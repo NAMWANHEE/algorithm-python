@@ -1111,15 +1111,16 @@ def gcd(a,b):
 #         answer  =  str(b) + answer
 #         b = 0
 # print(answer)
-import math
-n = int(input())
-li = [0,0,1,1,2]
-for i in range(5,n+1):
-    one,two,three = math.inf, math.inf,li[i-1]
-    if i % 3 == 0:
-        one = li[i//3]
-    if i%2 ==0:
-        two = li[i//2]
-    s = 1+ min(one,two,three)
-    li.append(s)
-print(li[n])
+# import math
+# n = int(input())
+# li = [0,0,1,1,2]
+# for i in range(5,n+1):
+#     one,two,three = math.inf, math.inf,li[i-1]
+#     if i % 3 == 0:
+#         one = li[i//3]
+#     if i%2 ==0:
+#         two = li[i//2]
+#     s = 1+ min(one,two,three)
+#     li.append(s)
+# print(li[n])
+print(1+3)
