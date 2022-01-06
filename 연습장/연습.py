@@ -1123,4 +1123,3 @@ def gcd(a,b):
 #     s = 1+ min(one,two,three)
 #     li.append(s)
 # print(li[n])
-print(1+3)
