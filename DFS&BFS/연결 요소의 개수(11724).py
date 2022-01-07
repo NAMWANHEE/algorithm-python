@@ -20,4 +20,4 @@ for i in range(1,n+1):
     if visit[i] == 0:   # bfs 를 이용하여 먼저 1부터 시작하여 1과 연결된 모든 노드를 찾고
         bfs(i)          # 방문 리스트에 방문한 노드를 1로 바꿔줌
         answer += 1     # bfs 함수가 모두 돌면 연결 요소(answer += 1)
-print(answer)           # 반복문을 돌며 방문안한 노드가 있으면 bfs 함수 실행
+print(answer)           # 반복문을 돌며 방문안한 노드가 있으면 bfs 함수 실행 -> 계속 반복
