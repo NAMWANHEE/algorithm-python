@@ -109,7 +109,9 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-연습장/
+연습장/연습
+/연습장
+연습장/*.py
 .idea
 idea/
 .idea/
