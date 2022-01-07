@@ -1123,3 +1123,62 @@ def gcd(a,b):
 #     s = 1+ min(one,two,three)
 #     li.append(s)
 # print(li[n])
+
+# n,m,v = map(int,input().split()) # n-노드수, m-간선수, v-시작노드
+# li = [[0]*(n+1) for _ in range(n+1)] # (n+1)x(n+1) 2차원 리스트 생성(인덱스 0이 들어가는 것은 무시 -> 실제로 사용하는 2차원리스트는 nxn
+# for i in range(m):
+#     a,b = map(int,input().split())
+#     li[a][b] = li[b][a] = 1 # 양방향이기 때문에 연결된 부분 양쪽 모두 1로 설정
+#
+# visit = [0] * (n+1) # 인덱스 = 이미 방문한 노드라면 1, 방문하지 않은 노드는 0 (초기엔 0으로 설정)
+#
+# def dfs(v):
+#     visit[v] = 1 # v번 노드를 방문 -> 0을 1로변경
+#     print(v,end=' ')
+#     for i in range(1,n+1):
+#         if visit[i] == 0 and li[v][i] == 1:
+#             dfs(i)
+#
+# def bfs(v):
+#     visit[v]= 0
+#     visit2 =[v]
+#     while visit2:
+#         a = visit2.pop(0)
+#         print(a,end=' ')
+#         for i in range(1,n+1):
+#             if visit[i] == 1 and li[a][i]:
+#                 visit2.append(i)
+#                 visit[i] = 0
+#
+# answer = 0
+# for i in range(1,n+1):
+#     if visit[i] == 0:
+#         dfs(i)
+#         answer += 1
+# print(answer)
+
+
+
+
+
+
+
+
+a, b = map(int,input().split())
+n= []
+for i in range(a):
+    n.append(int(input()))
+n.sort(reverse=True)
+cnt = 0
+while True:
+    if b == 0:
+        break
+    for i in range(len(n)):
+        if n[i] <= b:
+            cnt += b//n[i]
+            b = b-(n[i]*(b//n[i]))
+            n = n[i+1:]
+            break
+print(cnt)
+
+
