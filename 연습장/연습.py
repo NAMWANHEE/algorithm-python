@@ -1156,29 +1156,70 @@ def gcd(a,b):
 #         dfs(i)
 #         answer += 1
 # print(answer)
+#
+#
+#
+#
+#
+#
+#
+#
+# a, b = map(int,input().split())
+# n= []
+# for i in range(a):
+#     n.append(int(input()))
+# n.sort(reverse=True)
+# cnt = 0
+# while True:
+#     if b == 0:
+#         break
+#     for i in range(len(n)):
+#         if n[i] <= b:
+#             cnt += b//n[i]
+#             b = b-(n[i]*(b//n[i]))
+#             n = n[i+1:]
+#             break
+# print(cnt)
 
+# import sys
+# n = int(input())
+# m = int(input())
+# #n,m, = map(int,input().split()) # n-노드수, m-간선수,
+# li = [[0]*(n+1) for _ in range(n+1)] # (n+1)x(n+1) 2차원 리스트 생성(인덱스 0이 들어가는 것은 무시 -> 실제로 사용하는 2차원리스트는 nxn
+# for i in range(m):
+#     a,b = map(int,sys.stdin.readline().strip().split())
+#     li[a][b] = li[b][a] = 1 # 양방향이기 때문에 연결된 부분 양쪽 모두 1로 설정
+#
+# visit = [0] * (n+1) # 인덱스 = 이미 방문한 노드라면 1, 방문하지 않은 노드는 0 (초기엔 0으로 설정)
+# def bfs(v):
+#     visit[v]= 1
+#     visit2 =[v]
+#     while visit2:
+#         a = visit2.pop(0)
+#         for i in range(1,n+1):
+#             if visit[i] == 0 and li[a][i]:
+#                 visit2.append(i)
+#                 visit[i] = 1
+# bfs(1)
+# cnt =0
+# for i in visit:
+#     if i == 1:
+#         cnt += 1
+# print(cnt-1)
 
+n = int(input())
+li = []
+for i in range(n):
+    a, b = map(int,sys.stdin.readline().strip().split())
+    li.append([a,b])
 
+li = sorted(li, key=lambda a: a[0])
+li = sorted(li, key=lambda a: a[1])
 
-
-
-
-
-a, b = map(int,input().split())
-n= []
-for i in range(a):
-    n.append(int(input()))
-n.sort(reverse=True)
+finish = 0
 cnt = 0
-while True:
-    if b == 0:
-        break
-    for i in range(len(n)):
-        if n[i] <= b:
-            cnt += b//n[i]
-            b = b-(n[i]*(b//n[i]))
-            n = n[i+1:]
-            break
+for i in li:
+    if finish <= i[0]:
+        finish = i[1]
+        cnt += 1
 print(cnt)
-
-
