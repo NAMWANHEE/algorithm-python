@@ -1207,19 +1207,26 @@ def gcd(a,b):
 #         cnt += 1
 # print(cnt-1)
 
+# n = int(input())
+# li = []
+# for i in range(n):
+#     a, b = map(int,sys.stdin.readline().strip().split())
+#     li.append([a,b])
+#
+# li = sorted(li, key=lambda a: a[0])
+# li = sorted(li, key=lambda a: a[1])
+#
+# finish = 0
+# cnt = 0
+# for i in li:
+#     if finish <= i[0]:
+#         finish = i[1]
+#         cnt += 1
+# print(cnt)
+
 n = int(input())
-li = []
-for i in range(n):
-    a, b = map(int,sys.stdin.readline().strip().split())
-    li.append([a,b])
-
-li = sorted(li, key=lambda a: a[0])
-li = sorted(li, key=lambda a: a[1])
-
-finish = 0
-cnt = 0
-for i in li:
-    if finish <= i[0]:
-        finish = i[1]
-        cnt += 1
-print(cnt)
+time = list(map(int,input().split()))
+time.sort()
+for i in range(1,n):
+    time[i] = time[i-1] + time[i]
+print(sum(time))
