@@ -1224,9 +1224,17 @@ def gcd(a,b):
 #         cnt += 1
 # print(cnt)
 
+import heapq
 n = int(input())
-time = list(map(int,input().split()))
-time.sort()
-for i in range(1,n):
-    time[i] = time[i-1] + time[i]
-print(sum(time))
+li = list(int(input()) for _ in range(n))
+heapq.heapify(li)
+ans = 0
+while len(li) != 1:
+    a = heapq.heappop(li)
+    b = heapq.heappop(li)
+    sum = a+b
+    ans += sum
+    heapq.heappush(li,sum)
+
+print(ans)
+
