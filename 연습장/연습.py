@@ -1224,17 +1224,67 @@ def gcd(a,b):
 #         cnt += 1
 # print(cnt)
 
-import heapq
-n = int(input())
-li = list(int(input()) for _ in range(n))
-heapq.heapify(li)
-ans = 0
-while len(li) != 1:
-    a = heapq.heappop(li)
-    b = heapq.heappop(li)
-    sum = a+b
-    ans += sum
-    heapq.heappush(li,sum)
+# import heapq
+# n = int(input())
+# li = list(int(input()) for _ in range(n))
+# heapq.heapify(li)
+# ans = 0
+# while len(li) != 1:
+#     a = heapq.heappop(li)
+#     b = heapq.heappop(li)
+#     sum = a+b
+#     ans += sum
+#     heapq.heappush(li,sum)
+#
+# print(ans)
 
-print(ans)
+# n = int(input())
+# ans = []
+# top = list(map(int,input().split()))
+#
+# a = True
+# for i in range(n):
+#     if i == n-1:
+#         ans.append(0)
+#         break
+#     top1 = top[:n-i]
+#     loc = len(top1) - 1
+#     now = top1.pop()
+#     while loc != 0:
+#         past = top1.pop()
+#         if now < past:
+#             ans.append(loc)
+#             a = False
+#             break
+#         else:
+#             loc -= 1
+#     if a == False:
+#         a = True
+#         continue
+#     else:
+#         ans.append(0)
+# ans.reverse()
+# print(*ans)
+
+from collections import deque
+n = int(input())
+for i in range(n):
+    a = sys.stdin.readline().strip()
+    stack = deque()
+    li = deque()
+
+    for i in a:
+        if i == '<':
+            if stack :
+                li.appendleft(stack.pop())
+        elif i == '>':
+            if li:
+                stack.append(li.popleft())
+        elif i =='-':
+            if stack:
+                stack.pop()
+        else:
+            stack.append(i)
+    print(''.join(list(stack)+list(li)))
+
 

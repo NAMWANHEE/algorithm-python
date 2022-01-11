@@ -8,6 +8,5 @@ while len(li) != 1:
     b = heapq.heappop(li) # b = 현재heap에서 가장 작은 원소 pop
     sum = a+b             # sum = 기존 heap에서 가장작은 원소 2개의 합
     ans += sum            # ans를 반복문마다 갱신
-    heapq.heappush(li,sum) # heap에 가장 작은 원소 2개의 합을 추가
-
+    heapq.heappush(li,sum) # heap에 가장 작은 원소 2개의 합을 추가가
 print(ans)
