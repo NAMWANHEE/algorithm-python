@@ -1266,25 +1266,231 @@ def gcd(a,b):
 # ans.reverse()
 # print(*ans)
 
-from collections import deque
+# from collections import deque
+# n = int(input())
+# for i in range(n):
+#     a = sys.stdin.readline().strip()
+#     stack = deque()
+#     li = deque()
+#
+#     for i in a:
+#         if i == '<':
+#             if stack :
+#                 li.appendleft(stack.pop())
+#         elif i == '>':
+#             if li:
+#                 stack.append(li.popleft())
+#         elif i =='-':
+#             if stack:
+#                 stack.pop()
+#         else:
+#             stack.append(i)
+#     print(''.join(list(stack)+list(li)))
+
+# n = int(input())
+# from collections import deque
+# bil = []
+# for i in range(n):
+#     bil.append(int(sys.stdin.readline().strip()))
+# stack =[]
+# cnt = 0
+# for i in range(n):
+#     while stack and stack[-1] <= bil[i]:
+#         stack.pop()
+#     stack.append(bil[i])
+#     cnt += len(stack)-1
+# print(cnt)
+
+# a,b = map(int,input().split())
+# poket = {}
+# for i in range(a):
+#     name = sys.stdin.readline().strip()
+#     poket[i+1] = name
+#     poket[name] = i+1
+# for i in range(b):
+#     a = sys.stdin.readline().strip()
+#     try:
+#         print(poket[int(a)])
+#     except:
+#         print(poket[a])
+
+
+
+# n = int(input())
+# a = deque([i for i in range(1,n+1)])
+# while len(a) != 1:
+#     a.popleft()
+#     if len(a) == 1:
+#         break
+#     a.append(a.popleft())
+#
+# print(a[0])
+
+# n = int(input())
+# li = list(map(int,input().split()))
+# a = {}
+# for i in li:
+#     try:
+#         if a[i]:
+#             a[i] += 1
+#     except:
+#
+#         a[i] = 1
+# m = int(input())
+# li2 = list(map(int,input().split()))
+# ans = []
+# for i in li2:
+#     try:
+#         ans.append(a[i])
+#     except:
+#         ans.append(0)
+#
+# print(*ans)
+
+# a,b = map(int,input().split())
+# def wa(a):
+#     c = 1
+#     if a == 0:
+#         return c
+#     while a != 1 :
+#         c *= a
+#         a -= 1
+#     return c
+# def wa2(a,b):
+#     c = 1
+#     while b != 0:
+#         c *= a
+#         a -= 1
+#         b -= 1
+#     return c
+#
+# print(int(wa2(a,b)/wa(b)))
+
+# a,b = map(int,input().split())
+# stack = deque([i for i in range(1,a+1)])
+# ans =[]
+# count = 1
+# while stack:
+#     if count == b:
+#         ans.append(stack.popleft())
+#         count = 1
+#         continue
+#     stack.append(stack.popleft())
+#     count += 1
+#
+# print(str(ans).replace('[','<').replace(']','>'))
+
+
+# a = int(input())
+# b= input()
+#
+# ans = 0
+# for i in range(a):
+#     ans += (ord(b[i])-96) * (31**i)
+# print(ans % 1234567891)
+
+# n = int(input())
+# ans = []
+# for i in range(n):
+#     a = int(sys.stdin.readline().strip())
+#     if a != 0:
+#         ans.append(a)
+#     else:
+#         ans.pop()
+#
+# if len(ans) == 0:
+#     print(0)
+# else:
+#     print(sum(ans))
+
+
+# while True:
+#     stack = []
+#     a = sys.stdin.readline().rstrip()
+#     if a == '.':
+#         break
+#     for i in a:
+#         if i == '(' or i == '[':
+#             stack.append(i)
+#         elif i ==')':
+#             if stack and stack[-1] == '(':
+#                 stack.pop()
+#             else:
+#                 stack.append(i)
+#                 break
+#         elif i ==']':
+#             if stack and stack[-1] == '[':
+#                 stack.pop()
+#             else:
+#                 stack.append(i)
+#                 break
+#     if not stack:
+#         print('yes')
+#     if stack:
+#         print('no')
+
+# n = int(input())
+# li = [1,1,1]
+# for i in range(n):
+#     a = int(input())
+#     leng = len(li)
+#     if leng >= a:
+#         print(li[a-1])
+#     else:
+#         for j in range(leng,a+1):
+#             li.append(li[j-2]+li[j-3])
+#         print(li[a-1])
+
+# import heapq
+# n = int(input())
+# qu = []
+# heapq.heapify(qu)
+# for i in range(n):
+#     a = int(sys.stdin.readline().strip())
+#     if a != 0:
+#         heapq.heappush(qu,a)
+#     else:
+#         if qu:
+#             print(heapq.heappop(qu))
+#         else:
+#             print(0)
+
+# a,b = map(int,input().split())
+# j = {}
+# for i in range(a):
+#     url,password = sys.stdin.readline().strip().split()
+#     j[url] = password
+#
+# for i in range(b):
+#     want = sys.stdin.readline().strip()
+#     print(j[want])
 n = int(input())
 for i in range(n):
-    a = sys.stdin.readline().strip()
-    stack = deque()
+    a,b = map(int,sys.stdin.readline().strip().split())
+    c = list(map(int,sys.stdin.readline().strip().split()))
     li = deque()
+    idx = 0
+    for i in c:
+        li.append([i,idx])
+        idx+=1
 
-    for i in a:
-        if i == '<':
-            if stack :
-                li.appendleft(stack.pop())
-        elif i == '>':
-            if li:
-                stack.append(li.popleft())
-        elif i =='-':
-            if stack:
-                stack.pop()
+    idx1 = 0
+    ans = []
+    while True:
+        if idx1 == a:
+            break
+        s = True
+        for i in range(1,len(li)):
+            if li[0][0] < li[i][0] :
+                li.append(li.popleft())
+                s = False
+                break
+        if s == True:
+            idx1 += 1
+            ans.append(li.popleft())
+    cc = 0
+    for j in ans:
+        if j[1] == b:
+            print(cc+1)
         else:
-            stack.append(i)
-    print(''.join(list(stack)+list(li)))
-
-
+            cc += 1
