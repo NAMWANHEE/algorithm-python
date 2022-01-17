@@ -1464,33 +1464,72 @@ def gcd(a,b):
 # for i in range(b):
 #     want = sys.stdin.readline().strip()
 #     print(j[want])
+# n = int(input())
+# for i in range(n):
+#     a,b = map(int,sys.stdin.readline().strip().split())
+#     c = list(map(int,sys.stdin.readline().strip().split()))
+#     li = deque()
+#     idx = 0
+#     for i in c:
+#         li.append([i,idx])
+#         idx+=1
+#
+#     idx1 = 0
+#     ans = []
+#     while True:
+#         if idx1 == a:
+#             break
+#         s = True
+#         for i in range(1,len(li)):
+#             if li[0][0] < li[i][0] :
+#                 li.append(li.popleft())
+#                 s = False
+#                 break
+#         if s == True:
+#             idx1 += 1
+#             ans.append(li.popleft())
+#     cc = 0
+#     for j in ans:
+#         if j[1] == b:
+#             print(cc+1)
+#         else:
+#             cc += 1
+
+# n, m =map(int,input().split())
+# li = list(map(int,input().split()))
+# sum_list =[0]
+# c_sum = 0
+# for i in li:
+#     c_sum += i
+#     sum_list.append(c_sum)
+# for i in range(m):
+#     a,b = map(int,sys.stdin.readline().strip().split())
+#     print(sum_list[b]-sum_list[a-1])
 n = int(input())
 for i in range(n):
-    a,b = map(int,sys.stdin.readline().strip().split())
-    c = list(map(int,sys.stdin.readline().strip().split()))
-    li = deque()
-    idx = 0
-    for i in c:
-        li.append([i,idx])
-        idx+=1
-
-    idx1 = 0
-    ans = []
-    while True:
-        if idx1 == a:
-            break
-        s = True
-        for i in range(1,len(li)):
-            if li[0][0] < li[i][0] :
-                li.append(li.popleft())
-                s = False
-                break
-        if s == True:
-            idx1 += 1
-            ans.append(li.popleft())
-    cc = 0
-    for j in ans:
-        if j[1] == b:
-            print(cc+1)
-        else:
-            cc += 1
+    a = sys.stdin.readline().strip()
+    b = int(sys.stdin.readline().strip())
+    c = sys.stdin.readline().strip()
+    if len(c) != 2:
+        c = c[1:-1].split(',')
+        c = deque(c)
+    else:
+        c = deque()
+    try:
+        front = True
+        for i in a:
+            if i =='R':
+                if front == True:
+                    front = False
+                else:
+                    front = True
+            else:
+                if front == True:
+                    c.popleft()
+                else:
+                    c.pop()
+        if front == False:
+            c.reverse()
+        print('['+",".join(c)+']')
+    except:
+        print('error')
