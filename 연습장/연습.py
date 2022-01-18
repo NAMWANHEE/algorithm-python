@@ -1504,32 +1504,61 @@ def gcd(a,b):
 #     sum_list.append(c_sum)
 # for i in range(m):
 #     a,b = map(int,sys.stdin.readline().strip().split())
-#     print(sum_list[b]-sum_list[a-1])
-n = int(input())
-for i in range(n):
-    a = sys.stdin.readline().strip()
-    b = int(sys.stdin.readline().strip())
-    c = sys.stdin.readline().strip()
-    if len(c) != 2:
-        c = c[1:-1].split(',')
-        c = deque(c)
-    else:
-        c = deque()
-    try:
-        front = True
-        for i in a:
-            if i =='R':
-                if front == True:
-                    front = False
-                else:
-                    front = True
-            else:
-                if front == True:
-                    c.popleft()
-                else:
-                    c.pop()
-        if front == False:
-            c.reverse()
-        print('['+",".join(c)+']')
-    except:
-        print('error')
+# #     print(sum_list[b]-sum_list[a-1])
+# n = int(input())
+# for i in range(n):
+#     a = sys.stdin.readline().strip()
+#     b = int(sys.stdin.readline().strip())
+#     c = sys.stdin.readline().strip()
+#     if len(c) != 2:
+#         c = c[1:-1].split(',')
+#         c = deque(c)
+#     else:
+#         c = deque()
+#     try:
+#         front = True
+#         for i in a:
+#             if i =='R':
+#                 if front == True:
+#                     front = False
+#                 else:
+#                     front = True
+#             else:
+#                 if front == True:
+#                     c.popleft()
+#                 else:
+#                     c.pop()
+#         if front == False:
+#             c.reverse()
+#         print('['+",".join(c)+']')
+#     except:
+#         print('error')
+
+# n = int(sys.stdin.readline().strip())
+# ans = []
+# top = deque(map(int,sys.stdin.readline().strip().split()))
+# s = {}
+# top.reverse()
+# ans = deque()
+# while top:
+#     now = top.popleft()
+#     s = 0
+#     x = True
+#     for i in top:
+#         if i > now:
+#             ans.appendleft(len(top)-s)
+#             x = False
+#             break
+#         s += 1
+#     if x:
+#         ans.appendleft(0)
+# print(*ans)
+
+# n = int(input())
+# li = list(map(int,input().split()))
+# dp = [0] * n
+# dp[0] = li[0]
+# for i in range(1,n):
+#     dp[i] = max(li[i],li[i]+dp[i-1])
+#
+# print(max(dp))
