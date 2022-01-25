@@ -1581,19 +1581,106 @@ def gcd(a,b):
 #         right = mid-1        # 가장 긴 나무의 길이를 톱의 높이(mid) -1 값으로 설정
 # print(right)
 
-a, b = map(int,input().split())
-li = [int(input()) for _ in range(a)]
-start = 1
-end = max(li)
-while start <= end:
-    mid = (start+end) // 2
-    cnt = 0
-    for i in li:
-        cnt += i//mid
-        if cnt >=b:
-            break
-    if cnt >= b:
-        start = mid+1
-    else:
-        end = mid-1
-print(end)
+# a, b = map(int,input().split())
+# li = [int(input()) for _ in range(a)]
+# start = 1
+# end = max(li)
+# while start <= end:
+#     mid = (start+end) // 2
+#     cnt = 0
+#     for i in li:
+#         cnt += i//mid
+#         if cnt >=b:
+#             break
+#     if cnt >= b:
+#         start = mid+1
+#     else:
+#         end = mid-1
+# print(end)
+
+# n = int(input())
+# m = int(input())
+# bb = []
+# cc = []
+# x = []
+# for i in range(m):
+#     a,b = map(int,sys.stdin.readline().split())
+#     x.append([a,b])
+# x.sort(key=lambda x:x[1])
+# x.sort(key=lambda x:x[0])
+# for i in x:
+#     if i[0] == 1:
+#         bb.append(i[1])
+#     elif i[1] == 1:
+#         bb.append(i[0])
+#     elif i[0] in bb:
+#         cc.append(i[1])
+#     elif i[1] in bb:
+#         cc.append(i[0])
+#
+# print(len(set(bb+cc)))
+
+# n = input()
+# a = [0] * 10
+# for i in n:
+#     i = int(i)
+#     if i == 6 and a[i] >= a[9]:
+#         a[9] += 1
+#     elif i == 9 and a[i] >= a[6]:
+#         a[6] += 1
+#     else:
+#         a[i] += 1
+# print(max(a))
+
+# a,b = map(int,input().split())
+# n = 1
+# c = []
+# while n <= b:
+#     for i in range(n):
+#         c.append(n)
+#     n += 1
+# print(c)
+# print(sum(c[a-1:b]))
+#
+# n = int(input())
+# ans = [0] * 21
+#
+# for i in range(n):
+#     a = input().split()
+#     if a[0] == 'add':
+#         if ans[int(a[1])] == 0:
+#             ans[int(a[1])] = 1
+#     elif a[0] == 'remove':
+#         if ans[int(a[1])] == 1:
+#             ans[int(a[1])] = 0
+#     elif a[0] == 'check':
+#         if ans[int(a[1])] == 1:
+#             print(1)
+#         else:
+#             print(0)
+#     elif a[0] == 'toggle':
+#         if ans[int(a[1])] == 1:
+#             ans[int(a[1])] = 0
+#         else:
+#             ans[int(a[1])] = 1
+#     elif a[0] == 'all':
+#         ans = [1 for i in range(21)]
+#     else:
+#         ans = [0] * 21
+
+# n = input()
+# a = [0,9,99,999,9999,99999,999999,9999999,99999999]
+# print(int(n)*len(n) - sum(a[:len(n)]))
+
+n = int(input())
+a = [-1] * 11
+b = [0] * 11
+for i in range(n):
+    x,y = map(int,input().split())
+    if a[x] !=0 and a[x] != 1:
+        a[x] = y
+    elif a[x] != y:
+        a[x] = y
+        b[x] += 1
+
+print(sum(b))
