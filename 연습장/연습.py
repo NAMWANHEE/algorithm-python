@@ -1672,15 +1672,108 @@ def gcd(a,b):
 # a = [0,9,99,999,9999,99999,999999,9999999,99999999]
 # print(int(n)*len(n) - sum(a[:len(n)]))
 
-n = int(input())
-a = [-1] * 11
-b = [0] * 11
-for i in range(n):
-    x,y = map(int,input().split())
-    if a[x] !=0 and a[x] != 1:
-        a[x] = y
-    elif a[x] != y:
-        a[x] = y
-        b[x] += 1
+# n = int(input())
+# a = [-1] * 11
+# b = [0] * 11
+# for i in range(n):
+#     x,y = map(int,input().split())
+#     if a[x] !=0 and a[x] != 1:
+#         a[x] = y
+#     elif a[x] != y:
+#         a[x] = y
+#         b[x] += 1
+#
+# print(sum(b))
 
-print(sum(b))
+# a,b = map(int,input().split())
+# li = [0]
+# def wa():
+#     if len(li) == b+1:
+#         return print(*li[1:])
+#     for i in range(1,a+1):
+#         if i in li or i < li[-1]:
+#             continue
+#         li.append(i)
+#         wa()
+#         li.pop()
+#
+# wa()
+
+# n,m,b = map(int,sys.stdin.readline().strip().split())
+# li = []
+# for i in range(n):
+#     li.extend(list(map(int,sys.stdin.readline().strip().split())))
+# count = []
+# compare = list(set(li))
+# if len(compare) == 1:
+#     print(0,compare[0])
+# else:
+#     for j in compare:
+#         a = True
+#         cnt = 0
+#         for i in li:
+#
+#             if i == j:
+#                 continue
+#             if i > j:
+#                 a = False
+#                 b += i-j
+#                 cnt += 2
+#             elif i < j and b >= j-i:
+#                 a = False
+#                 b -= j-i
+#                 cnt += 1
+#
+#         count.append(cnt)
+#     x = []
+#     for i in range(len(count)):
+#         if count[i] == 0:
+#             continue
+#         x.append([count[i],compare[i]])
+#     x.sort(key=lambda x:x[1])
+#     x.sort(key=lambda x:x[0])
+#     print(*x[0])
+# a,b = map(int,input().split())
+# com = deque(map(int,input().split()))
+# li = [i for i in range(1,a+1)]
+# li = deque(li)
+# c = 0
+# for i in list(com):
+#     while True:
+#         if li[0] == i:
+#             li.popleft()
+#             com.popleft()
+#             break
+#         if li.index(i) < len(li)/2:
+#             li.append(li.popleft())
+#             c+=1
+#         else:
+#             li.appendleft(li.pop())
+#             c+= 1
+# print(c)
+
+
+n = int(input())
+li =[]
+for i in range(n):
+    li.append(list(map(int,input().split())))
+visit = [[False]*n for _ in range(n)]
+
+def dfs(a,b):
+    if a <= -1 or a >= n or b <= -1 or b >= n:
+        return False
+    now = li[a][b]
+    if now == -1:
+        print('HaruHaru')
+        exit(0)
+
+    if visit[a][b] == False:
+        visit[a][b] = True
+        dfs(a+now,b)
+        dfs(a,b+now)
+
+dfs(0,0)
+print('Hing')
+
+
+
