@@ -1753,27 +1753,66 @@ def gcd(a,b):
 # print(c)
 
 
-n = int(input())
-li =[]
-for i in range(n):
-    li.append(list(map(int,input().split())))
-visit = [[False]*n for _ in range(n)]
+# n = int(input())
+# li =[]
+# for i in range(n):
+#     li.append(list(map(int,input().split())))
+# visit = [[False]*n for _ in range(n)]
+#
+# def dfs(a,b):
+#     if a <= -1 or a >= n or b <= -1 or b >= n:
+#         return False
+#     now = li[a][b]
+#     if now == -1:
+#         print('HaruHaru')
+#         exit(0)
+#
+#     if visit[a][b] == False:
+#         visit[a][b] = True
+#         dfs(a+now,b)
+#         dfs(a,b+now)
+#
+# dfs(0,0)
+# print('Hing')
 
-def dfs(a,b):
-    if a <= -1 or a >= n or b <= -1 or b >= n:
-        return False
-    now = li[a][b]
-    if now == -1:
-        print('HaruHaru')
-        exit(0)
+# genres =['a','b','c','d','a','d','d','d','a','a','c','c']
+# plays =  [100,300,400,150,100,300,200,600,700,110,900,9000]
+# def a(generes,plays):
+#     a = {}
+#     b = []
+#     ans = []
+#     for i in range(len(plays)):
+#         try:
+#             b.append([genres[i],plays[i],i])
+#             a[genres[i]] += plays[i]
+#         except:
+#             a[genres[i]] = plays[i]
+#     a1 = sorted(a.items(), key=lambda x: x[1], reverse=True)
+#     b2 = sorted(b,key=lambda x: x[1], reverse=True)
+#     for i in a1:
+#
+#         c=0
+#         for j in b2:
+#             if c == 2:
+#                 break
+#             if i[0] == j[0]:
+#                 ans.append(j[2])
+#                 c += 1
+#     return ans
+# print(a(['a','b','c','d','a','d','d','d','a','a','c','c'],[100,300,400,150,100,300,200,600,700,110,900,9000]))
+from collections import defaultdict
+dic = defaultdict(int)
+total = 0
+while True:
+    a = sys.stdin.readline().strip()
+    if not a:
+        break
+    dic[a] +=1
+    total += 1
+key_list = sorted(list(dic.keys()))
 
-    if visit[a][b] == False:
-        visit[a][b] = True
-        dfs(a+now,b)
-        dfs(a,b+now)
-
-dfs(0,0)
-print('Hing')
+for i in key_list:
+    print('%s %.4f' % (i,(dic[i]/total*100)))
 
 
 
