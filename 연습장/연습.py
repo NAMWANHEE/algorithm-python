@@ -1800,19 +1800,29 @@ def gcd(a,b):
 #                 c += 1
 #     return ans
 # print(a(['a','b','c','d','a','d','d','d','a','a','c','c'],[100,300,400,150,100,300,200,600,700,110,900,9000]))
-from collections import defaultdict
-dic = defaultdict(int)
-total = 0
-while True:
-    a = sys.stdin.readline().strip()
-    if not a:
-        break
-    dic[a] +=1
-    total += 1
-key_list = sorted(list(dic.keys()))
+# from collections import defaultdict
+# dic = defaultdict(int)
+# total = 0
+# while True:
+#     a = sys.stdin.readline().strip()
+#     if not a:
+#         break
+#     dic[a] +=1
+#     total += 1
+# key_list = sorted(list(dic.keys()))
+#
+# for i in key_list:
+#     print('%s %.4f' % (i,(dic[i]/total*100)))
 
-for i in key_list:
-    print('%s %.4f' % (i,(dic[i]/total*100)))
+import heapq
 
+n = int(input())
+l = []
+for i in range(n):
+    a = list(map(int,input().split()))
+    for j in a:
+        heapq.heappush(l, j)
+        if len(l) > n:
+            heapq.heappop(l)
 
-
+print(l[0])
