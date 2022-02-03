@@ -1815,14 +1815,127 @@ def gcd(a,b):
 #     print('%s %.4f' % (i,(dic[i]/total*100)))
 
 import heapq
+#
+# n = int(input())
+# l = []
+# for i in range(n):
+#     a = list(map(int,input().split()))
+#     for j in a:
+#         heapq.heappush(l, j)
+#         if len(l) > n:
+#             heapq.heappop(l)
+#
+# print(l[0])
 
-n = int(input())
-l = []
-for i in range(n):
-    a = list(map(int,input().split()))
-    for j in a:
-        heapq.heappush(l, j)
-        if len(l) > n:
-            heapq.heappop(l)
+# n = int(input())
+# dic = {}
+# for i in range(n):
+#     a,b,c = sys.stdin.readline().strip().split()
+#     dic[a] = [b,c] # [left,right]
+#
+# def inorder(node):
+#     if node != '.':
+#         inorder(dic[node][0]) #left
+#         print(node,end='')            #middle
+#         inorder(dic[node][1]) #right
+#
+# def preorder(node):
+#     if node != '.':
+#         print(node,end='')
+#         preorder(dic[node][0]) #left
+#         preorder(dic[node][1]) #right
+#
+# def postorder(node):
+#     if node != '.':
+#         postorder(dic[node][0]) #left
+#         postorder(dic[node][1]) #right
+#         print(node,end='')
+# preorder('A')
+# print()
+# inorder('A')
+# print()
+# postorder('A')
 
-print(l[0])
+# n = int(input())
+# li = [[] for _ in range(n+1)]
+#
+#
+# ans = [0 for _ in range(n+1)]
+#
+# for i in range(n-1):
+#     a, b = map(int, sys.stdin.readline().strip().split())
+#     li[a].append(b)
+#     li[b].append(a)
+#
+# def bfs(node):
+#     q = deque()
+#     q.append(node)
+#     while q:
+#         root = q.popleft()
+#         for j in li[root]:
+#             if ans[j] == 0:
+#                 ans[j] = root
+#                 q.append(j)
+#
+# bfs(1)
+# for i in range(2,n+1):
+#     print(ans[i])
+
+# n = int(input())
+# q = deque()
+# for i in range(n):
+#     a = sys.stdin.readline().strip().split()
+#     if a[0] == 'push':
+#         q.append(a[1])
+#     elif a[0] == 'front':
+#         if len(q) == 0:
+#             print(-1)
+#         else:
+#             print(q[0])
+#     elif a[0] == 'back':
+#         if len(q) == 0:
+#             print(-1)
+#         else:
+#             print(q[-1])
+#     elif a[0] == 'size':
+#         print(len(q))
+#     elif a[0] == 'pop':
+#         if len(q) == 0:
+#             print(-1)
+#         else:
+#             print(q.popleft())
+#     elif a[0] == 'empty':
+#         if len(q) == 0:
+#             print(1)
+#         else:
+#             print(0)
+
+a,b = map(int,input().split())
+rel = [[] for _ in range(a+1)]
+for i in range(b):
+    x,y = map(int,sys.stdin.readline().strip().split())
+    rel[y].append(x)
+def bfs(start):
+    visit = [0] * (a + 1)
+    q = deque()
+    q.append(start)
+    visit[start] = 1
+    cnt = 1
+    while q:
+        node = q.popleft()
+        for i in rel[node]:
+            if visit[i] == 0:
+                q.append(i)
+                visit[i] = 1
+                cnt += 1
+    return cnt
+ans = []
+for i in range(1,a+1):
+    ans.append(bfs(i))
+
+ma = max(ans)
+
+for i in range(len(ans)):
+    if ans[i] == ma:
+        print(i+1, end=' ')
+
