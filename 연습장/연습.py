@@ -1910,32 +1910,121 @@ import heapq
 #         else:
 #             print(0)
 
-a,b = map(int,input().split())
-rel = [[] for _ in range(a+1)]
-for i in range(b):
-    x,y = map(int,sys.stdin.readline().strip().split())
-    rel[y].append(x)
-def bfs(start):
-    visit = [0] * (a + 1)
-    q = deque()
-    q.append(start)
-    visit[start] = 1
-    cnt = 1
-    while q:
-        node = q.popleft()
-        for i in rel[node]:
-            if visit[i] == 0:
-                q.append(i)
-                visit[i] = 1
-                cnt += 1
-    return cnt
-ans = []
-for i in range(1,a+1):
-    ans.append(bfs(i))
+# a,b = map(int,input().split())
+# rel = [[] for _ in range(a+1)]
+# for i in range(b):
+#     x,y = map(int,sys.stdin.readline().strip().split())
+#     rel[y].append(x)
+# def bfs(start):
+#     visit = [0] * (a + 1)
+#     q = deque()
+#     q.append(start)
+#     visit[start] = 1
+#     cnt = 1
+#     while q:
+#         node = q.popleft()
+#         for i in rel[node]:
+#             if visit[i] == 0:
+#                 q.append(i)
+#                 visit[i] = 1
+#                 cnt += 1
+#     return cnt
+# ans = []
+# for i in range(1,a+1):
+#     ans.append(bfs(i))
+#
+# ma = max(ans)
+#
+# for i in range(len(ans)):
+#     if ans[i] == ma:
+#         print(i+1, end=' ')
 
-ma = max(ans)
+# n = int(input())
+# for i in range(n):
+#     a,b = map(int,sys.stdin.readline().strip().split())
+#
+#     if  a % 10 == 1 or a % 10 == 5 or a % 10 == 6:
+#         print(a%10)
+#     elif a % 10 == 0:
+#         print(10)
+#     else:
+#         if b % 4 == 0:
+#             c = 4
+#         else:
+#             c = b % 4
+#         x = str(a**c)
+#         print(x[-1])
+# from collections import defaultdict
+# name = defaultdict(int)
+# n = int(input())
+# for i in range(n):
+#     file = sys.stdin.readline().strip().split('.')
+#     name[file[1]] += 1
+# new = sorted(name.items())
+#
+# for i in new:
+#     print(i[0],i[1])
 
-for i in range(len(ans)):
-    if ans[i] == ma:
-        print(i+1, end=' ')
+# n = int(input())
+# a = list(map(int,input().split()))
+# b = list(map(int,input().split()))
+# a = sorted(a)
+# b = sorted(b,reverse=True)
+# ans = 0
+# for i in range(len(a)):
+#     ans += (a[i]*b[i])
+# print(ans)
 
+# d,n = map(int,input().split())
+# oven = list(map(int,input().split()))
+# dow = list(map(int,input().split()))
+#
+# for i in range(1,d):
+#     oven[i] = min(oven[i],oven[i-1])
+#
+# now = 0
+# ans = 0
+# for i in reversed(range(d)):
+#     if oven[i] >= dow[now]:
+#         now += 1
+#         ans = i+1
+#     if now >= n:
+#         print(ans)
+#         sys.exit(0)
+# print(0)
+
+# n,m = map(int,input().split())
+# dic = {}
+# for i in range(n):
+#     name = sys.stdin.readline().strip()
+#     dic[name] = 1
+# ans = []
+# for i in range(m):
+#     name = sys.stdin.readline().strip()
+#     try:
+#         dic[name] += 1
+#         ans.append(name)
+#     except:
+#         continue
+# ans.sort()
+# print(len(ans))
+# for i in ans:
+#     print(i)
+
+# from itertools import combinations_with_replacement
+# num = [1,5,10,50]
+# c = int(input())
+# result =[]
+#
+# for a in combinations_with_replacement(num, c):
+#     sum = 0
+#     for i in a:
+#         sum += i
+#     result.append(sum)
+#
+# print(len(set(result)))
+from collections import d
+a = {}
+a['df'] = []
+a['df'].append('dfd')
+print(a['df'])
