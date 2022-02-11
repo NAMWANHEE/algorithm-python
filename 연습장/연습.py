@@ -2023,8 +2023,41 @@ import heapq
 #     result.append(sum)
 #
 # print(len(set(result)))
-from collections import d
-a = {}
-a['df'] = []
-a['df'].append('dfd')
-print(a['df'])
+import math
+# n,k = map(int,input().split())
+# li = deque()
+# for i in range(n):
+#     li.append(float(input()))
+# li = sorted(li)
+# def sol1(li):
+#     li1 = deque(li)
+#     for i in range(k):
+#         li1.popleft()
+#         li1.pop()
+#     re = sum(li1) / len(li1)
+#     return re
+#
+# def sol2(li):
+#     li1 = deque(li)
+#     for i in range(k):
+#         li1.popleft()
+#         li1.pop()
+#     for i in range(k):
+#         li1.append(li1[-1])
+#         li1.appendleft(li1[0])
+#     return sum(li1) / len(li1)
+#
+# print('%.2f'%(sol1(li)+0.00000001))
+# print('%.2f'%(sol2(li)+0.00000001))
+
+n, k = map(int,input().split())
+s = list(map(int,input().split()))
+d = list(map(int,input().split()))
+
+for i in range(k):
+    ans = [0] * n
+    for j in range(n):
+        ans[d[j]-1] = s[j]
+    s = ans
+
+print(*ans)
