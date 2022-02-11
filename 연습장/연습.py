@@ -2050,14 +2050,45 @@ import math
 # print('%.2f'%(sol1(li)+0.00000001))
 # print('%.2f'%(sol2(li)+0.00000001))
 
-n, k = map(int,input().split())
-s = list(map(int,input().split()))
-d = list(map(int,input().split()))
+# n, k = map(int,input().split())
+# s = list(map(int,input().split()))
+# d = list(map(int,input().split()))
+#
+# for i in range(k):
+#     ans = [0] * n
+#     for j in range(n):
+#         ans[d[j]-1] = s[j]
+#     s = ans
+#
+# print(*ans)
+import copy
+t = int(input())
+for i in range(t):
+    n,d = map(int,sys.stdin.readline().split())
+    array = []
+    for i in range(n):
+        array.append(list(map(int,sys.stdin.readline().split())))
+    ans = copy.deepcopy(array)
+    idx = n // 2
+    if d % 360 == 0:
+        pass
+    elif d < 0:
+        for j in range(int(-d/45)%4):
+            for i in range(n):
+                ans[i][i] = array[i][idx]
+                ans[idx][i] = array[i][i]
+                ans[i][idx] = array[i][n-1-i]
+                ans[n-1-i][i] = array[idx][i]
+                array = copy.deepcopy(ans)
+    elif d > 0:
+        for j in range(int(d/45)%4):
+            for i in range(n):
+                ans[i][i] = array[idx][i]
+                ans[idx][i] = array[n-1-i][i]
+                ans[i][idx] = array[i][i]
+                ans[n-1-i][i] = array[n-1-i][idx]
+                array = copy.deepcopy(ans)
 
-for i in range(k):
-    ans = [0] * n
-    for j in range(n):
-        ans[d[j]-1] = s[j]
-    s = ans
+    for i in ans:
+        print(*i)
 
-print(*ans)
