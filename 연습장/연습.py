@@ -2061,34 +2061,52 @@ import math
 #     s = ans
 #
 # print(*ans)
-import copy
-t = int(input())
-for i in range(t):
-    n,d = map(int,sys.stdin.readline().split())
-    array = []
-    for i in range(n):
-        array.append(list(map(int,sys.stdin.readline().split())))
-    ans = copy.deepcopy(array)
-    idx = n // 2
-    if d % 360 == 0:
-        pass
-    elif d < 0:
-        for j in range(int(-d/45)%4):
-            for i in range(n):
-                ans[i][i] = array[i][idx]
-                ans[idx][i] = array[i][i]
-                ans[i][idx] = array[i][n-1-i]
-                ans[n-1-i][i] = array[idx][i]
-                array = copy.deepcopy(ans)
-    elif d > 0:
-        for j in range(int(d/45)%4):
-            for i in range(n):
-                ans[i][i] = array[idx][i]
-                ans[idx][i] = array[n-1-i][i]
-                ans[i][idx] = array[i][i]
-                ans[n-1-i][i] = array[n-1-i][idx]
-                array = copy.deepcopy(ans)
+# import copy
+# t = int(input())
+# for i in range(t):
+#     n,d = map(int,sys.stdin.readline().split())
+#     array = []
+#     for i in range(n):
+#         array.append(list(map(int,sys.stdin.readline().split())))
+#     ans = copy.deepcopy(array)
+#     idx = n // 2
+#     if d % 360 == 0:
+#         pass
+#     elif d < 0:
+#         for j in range(int(-d/45)%4):
+#             for i in range(n):
+#                 ans[i][i] = array[i][idx]
+#                 ans[idx][i] = array[i][i]
+#                 ans[i][idx] = array[i][n-1-i]
+#                 ans[n-1-i][i] = array[idx][i]
+#                 array = copy.deepcopy(ans)
+#     elif d > 0:
+#         for j in range(int(d/45)%4):
+#             for i in range(n):
+#                 ans[i][i] = array[idx][i]
+#                 ans[idx][i] = array[n-1-i][i]
+#                 ans[i][idx] = array[i][i]
+#                 ans[n-1-i][i] = array[n-1-i][idx]
+#                 array = copy.deepcopy(ans)
+#
+#     for i in ans:
+#         print(*i)
 
-    for i in ans:
-        print(*i)
+# 10 000 000
+# n, k = map(int,input().split())
+# cnt = 0
+#
+# while True:
+#     if str(bin(n)[2:]).count('1') <= k:
+#         print(cnt)
+#         break
+#     else:
+#         n += 1
+#         cnt += 1
 
+record = ["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
+dic = {}
+for i in record:
+    if i.split(' ')[0] != 'Leave':
+        dic[i.split(' ')[1]] = i.split(' ')[2]
+print(dic['uid1234'])

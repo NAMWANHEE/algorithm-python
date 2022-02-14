@@ -33,6 +33,6 @@ def solution(new_id):
 
     while len(new) < 3:         # 7단계 문자길이가 2이하인 경우 기존 문자의 마지막 문자를 길이가 3이 되도록 만들어줌
         new.append(new[-1])
-    for i in new:               # 생성된 문자 리스트를 정답 문자열로 만들어줌
-        answer += i
+    for i in new:               # 생성된 문자 리스트를 정답 문자열로 만들어줌줌
+       answer += i
     return answer
