@@ -2103,10 +2103,64 @@ import math
 #     else:
 #         n += 1
 #         cnt += 1
+# li =[0]
+# dp = [0]
+# n = int(input())
+# for i in range(n):
+#     li.append(int(input()))
+# if n == 1:
+#     dp.append(li[1])
+# elif n == 2:
+#     dp.append(li[1])
+#     dp.append(li[1]+li[2])
+#
+# else:
+#     dp.append(li[1])
+#     dp.append(li[1] + li[2])
+#
+#     for i in range(3,n+1):
+#         dp.append(max(dp[i-1],li[i]+li[i-1]+dp[i-3],li[i]+dp[i-2]))
+#
+#
+# print(dp[-1])
+# board =[[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
+# moves =[1,5,3,5,1,2,1,4]
+# answer = 0
+# st = []
+# print(len(board))
+# for i in moves:
+#     for j in range(len(board)):
+#         if board[i-1][j] != 0:
+#             if st:
+#                 if st[-1] == st.append(board[i][j]):
+#                     board[i][j] = 0
+#                     st.pop()
+#                     break
+#         st.append(board[i][j])
+#         board[i][j] = 0
+# print(st)
 
-record = ["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
-dic = {}
-for i in record:
-    if i.split(' ')[0] != 'Leave':
-        dic[i.split(' ')[1]] = i.split(' ')[2]
-print(dic['uid1234'])
+n,s = map(int,input().split())
+li = list(map(int,input().split()))
+left = 0
+right = 0
+a_sum = 0
+ans = 100001
+
+while True:
+    if a_sum >= s:
+        ans = min(ans,right-left)
+        a_sum -= li[left]
+        left += 1
+
+    elif right == n:
+        break
+    else:
+        a_sum += li[right]
+        right += 1
+
+
+if ans == 100001:
+    print(0)
+else:
+    print(ans)
