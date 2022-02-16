@@ -2164,3 +2164,19 @@ import math
 #     print(0)
 # else:
 #     print(ans)
+n = int(input())
+time = [] # 전체 강의시간표
+classroom = [] # 강의실의 끝나는 시간 담는 리스트 , 해당 리스트의 길이가 곧 강의실 갯수
+for i in range(n):
+    s, t = map(int,sys.stdin.readline().strip().split())
+    time.append([s,t])
+time.sort(key=lambda x: x[0])
+heapq.heappush(classroom,time[0][1])
+
+for i in range(1,n):
+    if time[i][0] < classroom[0]:
+        heapq.heappush(classroom, time[i][1])
+    else:
+        heapq.heappop(classroom)
+        heapq.heappush(classroom, time[i][1])
+print(len(classroom))
