@@ -2140,27 +2140,28 @@ import math
 #         board[i][j] = 0
 # print(st)
 
-n,s = map(int,input().split())
-li = list(map(int,input().split()))
-left = 0
-right = 0
-a_sum = 0
-ans = 100001
+# n,s = map(int,input().split())
+# li = list(map(int,input().split()))
+# left = 0
+# right = 0
+# a_sum = 0
+# ans = 100001
+#
+# while True:
+#     if a_sum >= s:
+#         ans = min(ans,right-left)
+#         a_sum -= li[left]
+#         left += 1
+#
+#     elif right == n:
+#         break
+#     else:
+#         a_sum += li[right]
+#         right += 1
+#
+#
+# if ans == 100001:
+#     print(0)
+# else:
+#     print(ans)
 
-while True:
-    if a_sum >= s:
-        ans = min(ans,right-left)
-        a_sum -= li[left]
-        left += 1
-
-    elif right == n:
-        break
-    else:
-        a_sum += li[right]
-        right += 1
-
-
-if ans == 100001:
-    print(0)
-else:
-    print(ans)
