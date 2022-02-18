@@ -2182,18 +2182,33 @@ import math
 #         heapq.heappush(classroom, time[i][1])
 # print(len(classroom))
 
-n,m = map(int,input().split())
-num = []
-for i in range(n):
-    num.append(int(input()))
-num.sort()
-start, end =0,0
-ans = sys.maxsize
+# n,m = map(int,input().split())
+# num = []
+# for i in range(n):
+#     num.append(int(input()))
+# num.sort()
+# start, end =0,0
+# ans = sys.maxsize
+#
+# while start < n and end < n:
+#     if num[end]-num[start] >= m:
+#         ans = min(num[end]-num[start],ans)
+#         start += 1
+#     else:
+#         end += 1
+# print(ans)
 
-while start < n and end < n:
-    if num[end]-num[start] >= m:
-        ans = min(num[end]-num[start],ans)
-        start += 1
+# 4 7 44 47 74 77 444 447 474 477 744
+# 1 2 3  4  5  6  7   8
+n = int(input())
+f = '47'
+f1 = '74'
+def sol(x):
+    if x <= 2:
+        return f[x-1]
     else:
-        end += 1
-print(ans)
+        a = (x-1) // 2
+        b = x % 2
+        return sol(a) + f1[b]
+
+print(sol(n))
