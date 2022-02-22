@@ -2200,15 +2200,48 @@ import math
 
 # 4 7 44 47 74 77 444 447 474 477 744
 # 1 2 3  4  5  6  7   8
-n = int(input())
-f = '47'
-f1 = '74'
-def sol(x):
-    if x <= 2:
-        return f[x-1]
-    else:
-        a = (x-1) // 2
-        b = x % 2
-        return sol(a) + f1[b]
+# n = int(input())
+# f = '47'
+# f1 = '74'
+# def sol(x):
+#     if x <= 2:
+#         return f[x-1]
+#     else:
+#         a = (x-1) // 2
+#         b = x % 2
+#         return sol(a) + f1[b]
+#
+# print(sol(n))
 
-print(sol(n))
+# n = input()
+# a = input()
+# ans = ''
+# for i in n:
+#     try:
+#         int(i)
+#     except:
+#         ans += i
+# if a in ans:
+#     print(1)
+# else:
+#     print(0)
+
+# n = int(input())
+# a = list(map(int,input().split()))
+# b,c = map(int,input().split())
+# ans = 0
+# for i in a:
+#     if i-b <= 0:
+#         continue
+#     if abs(i-b) % c == 0:
+#         ans += (abs(i - b) // c)
+#     else:
+#         ans += (abs(i-b) // c) +1
+#     print(ans)
+# print(ans+len(a))
+
+n = int(input())
+if n % 2 == 0:
+    print('CY')
+else:
+    print('SK')
