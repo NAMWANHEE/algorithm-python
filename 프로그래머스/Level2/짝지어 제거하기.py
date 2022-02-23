@@ -20,7 +20,7 @@ def solution(s):
 
     if ans:           # 최종 문자열이 있는 경우
         answer = 0
-    else:             # 연속되는 문자열이 계속 삭제되어 문자열이 없는경우
-        answer = 1
+    else:             # 연속되는 문자열이 계속 삭제되어 문자열이 없는경우우
+        anwer = 1
 
     return answer
