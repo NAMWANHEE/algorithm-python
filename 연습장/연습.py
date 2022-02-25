@@ -2275,39 +2275,54 @@ import math
 #
 # print(miro[n-1][m-1])
 
-t = int(input())
-for i in range(t):
-    n,m,k = map(int,input().split())
-    ground = [[0]*n for _ in range(m)]
+# t = int(input())
+# for i in range(t):
+#     n,m,k = map(int,input().split())
+#     ground = [[0]*n for _ in range(m)]
+#
+#     for i in range(k):
+#         x,y = map(int,input().split())
+#         ground[y][x] = 1
+#     dx = [-1,1,0,0]
+#     dy = [0,0,-1,1]
+#     def bfs(a,b):
+#         q = deque()
+#         q.append([a,b])
+#         ground[a][b] = 0
+#         while q:
+#             x,y = q.popleft()
+#             for i in range(4):
+#                 nx = x + dx[i]
+#                 ny = y + dy[i]
+#
+#                 if nx < 0 or ny < 0 or nx >= m or ny >= n:
+#                     continue
+#                 if ground[nx][ny] == 0:
+#                     continue
+#
+#                 if ground[nx][ny] == 1:
+#                     q.append([nx,ny])
+#                     ground[nx][ny] = 0
+#
+#     c = 0
+#     for i in range(m):
+#         for j in range(n):
+#             if ground[i][j] == 1:
+#                 bfs(i,j)
+#                 c += 1
+#     print(c)
 
-    for i in range(k):
-        x,y = map(int,input().split())
-        ground[y][x] = 1
-    dx = [-1,1,0,0]
-    dy = [0,0,-1,1]
-    def bfs(a,b):
-        q = deque()
-        q.append([a,b])
-        ground[a][b] = 0
-        while q:
-            x,y = q.popleft()
-            for i in range(4):
-                nx = x + dx[i]
-                ny = y + dy[i]
+a,p = map(int,input().split())
+li = [a]
+while True:
+    num = 0
+    for i in range(len(str(li[-1]))):
+        num += int(str(li[-1])[i]) ** p
+    if num in li:
+        idx = li.index(num)
+        print(len(li[:idx]))
+        break
+    else:
+        li.append(num)
 
-                if nx < 0 or ny < 0 or nx >= m or ny >= n:
-                    continue
-                if ground[nx][ny] == 0:
-                    continue
 
-                if ground[nx][ny] == 1:
-                    q.append([nx,ny])
-                    ground[nx][ny] = 0
-
-    c = 0
-    for i in range(m):
-        for j in range(n):
-            if ground[i][j] == 1:
-                bfs(i,j)
-                c += 1
-    print(c)
