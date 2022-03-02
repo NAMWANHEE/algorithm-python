@@ -2312,17 +2312,48 @@ import math
 #                 c += 1
 #     print(c)
 
-a,p = map(int,input().split())
-li = [a]
-while True:
-    num = 0
-    for i in range(len(str(li[-1]))):
-        num += int(str(li[-1])[i]) ** p
-    if num in li:
-        idx = li.index(num)
-        print(len(li[:idx]))
-        break
-    else:
-        li.append(num)
+# a,p = map(int,input().split())
+# li = [a]
+# while True:
+#     num = 0
+#     for i in range(len(str(li[-1]))):
+#         num += int(str(li[-1])[i]) ** p
+#     if num in li:
+#         idx = li.index(num)
+#         print(len(li[:idx]))
+#         break
+#     else:
+#         li.append(num)
+#
+# n = int(input())
+# call = list(map(int,input().split()))
+# def y(c):
+#     s = 0
+#     for i in c:
+#         s += 10 * (i // 30 + 1)
+#     return s
+#
+# def m(c):
+#     s = 0
+#     for i in c:
+#         s += 15 * (i // 60 + 1)
+#     return s
+#
+# if y(call) > m(call):
+#     print('M',m(call))
+# elif y(call) < m(call):
+#     print('Y', y(call))
+# else:
+#     print('Y M',y(call))
 
+n = int(input())
+home = []
+for i in range(n):
+    home.append(list(map(int,input().split())))
 
+for i in range(1,n):                                                # 2번째 집부터 이전의 R,G,B 중 현재 색과 다른 두개 중 작은 비용과 현재 비용을 더한값을 현재 값으로 설정
+    home[i][0] = min(home[i-1][1],home[i-1][2])+home[i][0]          # 현재 색상 R
+    home[i][1] = min(home[i - 1][0], home[i - 1][2]) + home[i][1]   # 현재 색상 G
+    home[i][2] = min(home[i - 1][1], home[i - 1][0]) + home[i][2]   # 현재 색상 B
+
+print(min(home[n-1]))
