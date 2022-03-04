@@ -2358,38 +2358,84 @@ import math
 #
 # print(min(home[n-1]))
 
-m,n = map(int,input().split())
-tmt =[]
-for i in range(n):
-    tmt.append(list(map(int,input().split())))
+# m,n = map(int,input().split())
+# tmt =[]
+# for i in range(n):
+#     tmt.append(list(map(int,input().split())))
+#
+# queue = deque()
+# for i in range(n):
+#     for j in range(m):
+#         if tmt[i][j] == 1:
+#             queue.append([i,j]) # 맨 처음 익은 상태의 토마토만 데크에 추가
+#
+# dx = [-1,1,0,0]
+# dy = [0,0,-1,1]
+#
+# while queue:              # bfs
+#     x,y = queue.popleft() # 익은 토마토의 위치
+#     for i in range(4):    # 반복문 4번으로 상 하 좌 우 탐색
+#         nx = dx[i]+x      # 이동한 위치의 x좌표 = nx
+#         ny = dy[i]+y      # 이동한 위치의 y좌표 = ny
+#         if nx < 0 or ny < 0 or nx >n-1 or ny > m-1: # 이동한 x,y가 상자 크기의 범위를 벗어날 경우 continue
+#             continue
+#
+#         if tmt[nx][ny] == 0:            # 이동한 위치의 토마토가 익지 않은 0이라면
+#             tmt[nx][ny] = tmt[x][y] + 1 # 현재 익은 토마토의 값에 +1 , 이렇게 하는 이유는 토마토가 익는 날짜를 알기 위해 +1을 해준다
+#             queue.append([nx,ny])       # 이동한 좌표값 데크에 추가
+#
+# ans = 0
+# for i in range(n):
+#     for j in range(m):
+#         if tmt[i][j] == 0:     # 위의 과정을 다 돌았는데도 0이 있는 경우 = 토마토가 모두 익지 못하는 상황
+#             print(-1)          # -1 출력 후 종료
+#             sys.exit(0)
+#     ans = max(ans,max(tmt[i])) # n 개의 리스트를 반복하며 최대값 갱신
+#
+# print(ans-1)                   # 가장 최대값에 -1을 해줘야 경과된 날짜가 된다.
 
-queue = deque()
-for i in range(n):
-    for j in range(m):
-        if tmt[i][j] == 1:
-            queue.append([i,j]) # 맨 처음 익은 상태의 토마토만 데크에 추가
+#n = input()
+s = ['a','e','i','o','u']
+def check(str):
+    ja = 0
+    mo = 0
+    mocheck = 0
+    c = deque()
+    compare = '-'
+    for i in str:
+        if i == compare and i != 'e' and i != 'o' :
+            return 0
+        else:
+            compare = i
+        if mocheck:
+            if i in s:
+                mo +=1
+                ja = 0
+            else:
+                mo = 0
+                ja += 1
+            if mo == 3 or ja == 3:
+                return 0
+        else:
+            if i in s:
+                mocheck = 1
+                mo += 1
+                ja = 0
+            else:
+                mo = 0
+                ja += 1
+            if mo == 3 or ja == 3:
+                return 0
 
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
-
-while queue:              # bfs
-    x,y = queue.popleft() # 익은 토마토의 위치
-    for i in range(4):    # 반복문 4번으로 상 하 좌 우 탐색
-        nx = dx[i]+x      # 이동한 위치의 x좌표 = nx
-        ny = dy[i]+y      # 이동한 위치의 y좌표 = ny
-        if nx < 0 or ny < 0 or nx >n-1 or ny > m-1: # 이동한 x,y가 상자 크기의 범위를 벗어날 경우 continue
-            continue
-
-        if tmt[nx][ny] == 0:            # 이동한 위치의 토마토가 익지 않은 0이라면
-            tmt[nx][ny] = tmt[x][y] + 1 # 현재 익은 토마토의 값에 +1 , 이렇게 하는 이유는 토마토가 익는 날짜를 알기 위해 +1을 해준다
-            queue.append([nx,ny])       # 이동한 좌표값 데크에 추가
-
-ans = 0
-for i in range(n):
-    for j in range(m):
-        if tmt[i][j] == 0:     # 위의 과정을 다 돌았는데도 0이 있는 경우 = 토마토가 모두 익지 못하는 상황
-            print(-1)          # -1 출력 후 종료
-            sys.exit(0)
-    ans = max(ans,max(tmt[i])) # n 개의 리스트를 반복하며 최대값 갱신
-
-print(ans-1)                   # 가장 최대값에 -1을 해줘야 경과된 날짜가 된다.
+    if mocheck:
+        return 1
+    else:
+        return 0
+while True:
+    n = input()
+    if n == 'end':
+        break
+    if check(n):
+        print("<"+n+"> is acceptable.")
+    else:
+        print("<"+n+"> is not acceptable.")
