@@ -2395,47 +2395,93 @@ import math
 # print(ans-1)                   # 가장 최대값에 -1을 해줘야 경과된 날짜가 된다.
 
 #n = input()
-s = ['a','e','i','o','u']
-def check(str):
-    ja = 0
-    mo = 0
-    mocheck = 0
-    c = deque()
-    compare = '-'
-    for i in str:
-        if i == compare and i != 'e' and i != 'o' :
-            return 0
-        else:
-            compare = i
-        if mocheck:
-            if i in s:
-                mo +=1
-                ja = 0
-            else:
-                mo = 0
-                ja += 1
-            if mo == 3 or ja == 3:
-                return 0
-        else:
-            if i in s:
-                mocheck = 1
-                mo += 1
-                ja = 0
-            else:
-                mo = 0
-                ja += 1
-            if mo == 3 or ja == 3:
-                return 0
+# s = ['a','e','i','o','u']
+# def check(str):
+#     ja = 0
+#     mo = 0
+#     mocheck = 0
+#     c = deque()
+#     compare = '-'
+#     for i in str:
+#         if i == compare and i != 'e' and i != 'o' :
+#             return 0
+#         else:
+#             compare = i
+#         if mocheck:
+#             if i in s:
+#                 mo +=1
+#                 ja = 0
+#             else:
+#                 mo = 0
+#                 ja += 1
+#             if mo == 3 or ja == 3:
+#                 return 0
+#         else:
+#             if i in s:
+#                 mocheck = 1
+#                 mo += 1
+#                 ja = 0
+#             else:
+#                 mo = 0
+#                 ja += 1
+#             if mo == 3 or ja == 3:
+#                 return 0
+#
+#     if mocheck:
+#         return 1
+#     else:
+#         return 0
+# while True:
+#     n = input()
+#     if n == 'end':
+#         break
+#     if check(n):
+#         print("<"+n+"> is acceptable.")
+#     else:
+#         print("<"+n+"> is not acceptable.")
 
-    if mocheck:
-        return 1
-    else:
-        return 0
-while True:
-    n = input()
-    if n == 'end':
-        break
-    if check(n):
-        print("<"+n+"> is acceptable.")
-    else:
-        print("<"+n+"> is not acceptable.")
+# s = input()
+# ans = []
+# for i in range(1,len(s)+1):
+#     for j in range(len(s)-i+1):
+#         ans.append(s[j:j+i])
+# print(len(set(ans)))
+
+# s = input()
+# a = s[0]
+# one = 0
+# two = 0
+# if a == '1':
+#     one += 1
+# else:
+#     two += 1
+#
+# for i in s:
+#     if i == '1':
+#         if i != a:
+#             one += 1
+#             a = i
+#     else:
+#         if i != a:
+#             two +=1
+#             a = i
+# print(min(one,two))
+
+s = int(input())
+for i in range(s):
+    n = int(sys.stdin.readline())
+    li = []
+    c = 0
+    for i in range(n):
+        li.append(list(map(int,sys.stdin.readline().split())))
+    li = sorted(li,key = lambda x: x[0])
+    now = 0
+    for i in li:
+        if i[0]==1 or i[1]==1:
+            c+=1
+            now = i[1]
+            continue
+        if i[1] < now:
+            c+=1
+            now = i[1]
+    print(c)
