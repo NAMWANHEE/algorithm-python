@@ -1,6 +1,6 @@
 import copy
 from collections import deque
-
+# PyPy3 통과, Python3 시간초과
 w, l = map(int,input().split())
 island = []
 for i in range(w):
