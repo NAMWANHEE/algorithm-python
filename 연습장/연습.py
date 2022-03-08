@@ -2467,21 +2467,56 @@ import math
 #             a = i
 # print(min(one,two))
 
-s = int(input())
-for i in range(s):
-    n = int(sys.stdin.readline())
-    li = []
+# s = int(input())
+# for i in range(s):
+#     n = int(sys.stdin.readline())
+#     li = []
+#     c = 0
+#     for i in range(n):
+#         li.append(list(map(int,sys.stdin.readline().split())))
+#     li = sorted(li,key = lambda x: x[0])
+#     now = 0
+#     for i in li:
+#         if i[0]==1 or i[1]==1:
+#             c+=1
+#             now = i[1]
+#             continue
+#         if i[1] < now:
+#             c+=1
+#             now = i[1]
+#     print(c)
+import copy
+w, l = map(int,input().split())
+island = []
+for i in range(w):
+    island.append(list(input()))
+
+def bfs(a,b,land):
+    land[a][b] = 0
+    q = deque()
+    dx = [1,-1,0,0]
+    dy = [0,0,1,-1]
+    q.append([a,b])
     c = 0
-    for i in range(n):
-        li.append(list(map(int,sys.stdin.readline().split())))
-    li = sorted(li,key = lambda x: x[0])
-    now = 0
-    for i in li:
-        if i[0]==1 or i[1]==1:
-            c+=1
-            now = i[1]
-            continue
-        if i[1] < now:
-            c+=1
-            now = i[1]
-    print(c)
+    while q:
+        x,y = q.popleft()
+
+        for i in range(4):
+            nx = dx[i] + x
+            ny = dy[i] + y
+            if nx < 0 or ny < 0 or nx >= w or ny >= l:
+                continue
+            if land[nx][ny] == 'L':
+                land[nx][ny] = land[x][y] + 1
+                q.append([nx,ny])
+                c  = max(c,land[nx][ny])
+    return c
+ans = []
+
+for i in range(w):
+    for j in range(l):
+        if island[i][j] == 'L':
+            b = copy.deepcopy(island)
+            ans.append(bfs(i,j,b))
+
+print(max(ans))
