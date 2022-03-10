@@ -8,7 +8,6 @@ def solution(places):
 
     def bfs(place):
         b = deque()
-        a = True
         place2 = []
         for i in place:
             place2.append(list(i))
