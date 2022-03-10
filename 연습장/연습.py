@@ -2485,38 +2485,50 @@ import math
 #             c+=1
 #             now = i[1]
 #     print(c)
-import copy
-w, l = map(int,input().split())
-island = []
-for i in range(w):
-    island.append(list(input()))
-
-def bfs(a,b,land):
-    land[a][b] = 0
-    q = deque()
-    dx = [1,-1,0,0]
-    dy = [0,0,1,-1]
-    q.append([a,b])
-    c = 0
-    while q:
-        x,y = q.popleft()
-
-        for i in range(4):
-            nx = dx[i] + x
-            ny = dy[i] + y
-            if nx < 0 or ny < 0 or nx >= w or ny >= l:
-                continue
-            if land[nx][ny] == 'L':
-                land[nx][ny] = land[x][y] + 1
-                q.append([nx,ny])
-                c  = max(c,land[nx][ny])
-    return c
+# import copy
+# w, l = map(int,input().split())
+# island = []
+# for i in range(w):
+#     island.append(list(input()))
+#
+# def bfs(a,b,land):
+#     land[a][b] = 0
+#     q = deque()
+#     dx = [1,-1,0,0]
+#     dy = [0,0,1,-1]
+#     q.append([a,b])
+#     c = 0
+#     while q:
+#         x,y = q.popleft()
+#
+#         for i in range(4):
+#             nx = dx[i] + x
+#             ny = dy[i] + y
+#             if nx < 0 or ny < 0 or nx >= w or ny >= l:
+#                 continue
+#             if land[nx][ny] == 'L':
+#                 land[nx][ny] = land[x][y] + 1
+#                 q.append([nx,ny])
+#                 c  = max(c,land[nx][ny])
+#     return c
+# ans = []
+#
+# for i in range(w):
+#     for j in range(l):
+#         if island[i][j] == 'L':
+#             b = copy.deepcopy(island)
+#             ans.append(bfs(i,j,b))
+#
+# print(max(ans))
+from collections import defaultdict
+dic = defaultdict(int)
+n = int(input())
+for i in range(n):
+    num = int(input())
+    dic[num] += 1
+ma = max(dic.values())
 ans = []
-
-for i in range(w):
-    for j in range(l):
-        if island[i][j] == 'L':
-            b = copy.deepcopy(island)
-            ans.append(bfs(i,j,b))
-
-print(max(ans))
+for a,b in dic.items():
+    if b == ma:
+        ans.append(a)
+print(min(ans))
