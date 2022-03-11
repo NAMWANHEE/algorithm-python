@@ -2533,61 +2533,82 @@ import math
 #         ans.append(a)
 # print(min(ans))
 
-from collections import deque
-import copy
+# from collections import deque
+# import copy
+#
+#
+# def solution(places):
+#     answer = []
+#
+#     dx = [1, -1, 0, 0]
+#     dy = [0, 0, 1, -1]
+#
+#     def bfs(place):
+#         b = deque()
+#         a = True
+#         place2 = []
+#         for i in place:
+#             place2.append(list(i))
+#         for j in range(5):
+#             for s in range(5):
+#                 if place2[j][s] == 'P':
+#
+#                     b.append([j, s])
+#
+#         if len(b) == 0:
+#             return 1
+#         for i in b:
+#
+#             stack = deque()
+#             stack.append(i)
+#             place3 = copy.deepcopy(place2)
+#             place3[i[0]][i[1]] = 0
+#             while stack:
+#                 x, y = stack.popleft()
+#                 for i in range(4):
+#                     nx = dx[i] + x
+#                     ny = dy[i] + y
+#
+#                     if nx < 0 or ny < 0 or nx >= 5 or ny >= 5:
+#                         continue
+#                     if place3[nx][ny] == 'X':
+#                         continue
+#                     if place3[nx][ny] == 'O':
+#                         place3[nx][ny] = place3[x][y] + 1
+#                         stack.append([nx,ny])
+#                     elif place3[nx][ny] == 'P':
+#                         if place3[x][y]+1 <= 2:
+#                             return 0
+#                         stack.append([nx,ny])
+#                         place3[nx][ny] = 0
+#
+#
+#         return 1
+#
+#     for i in places:
+#         answer.append(bfs(i))
+#
+#     return answer
+#
+# print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
 
+n = int(input())
+li = sorted(list(map(int,input().split())))
+m = int(input())
+li2 = list(map(int,input().split()))
+ans = []
 
-def solution(places):
-    answer = []
+def binary(i, start, end):
+    mid = (start+end) // 2
+    if start > end:
+        ans.append(0)
+    elif i == li[mid]:
+        ans.append(1)
+    elif i > li[mid]:
+        binary(i,mid+1,end)
+    else:
+        binary(i,start,mid-1)
 
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-
-    def bfs(place):
-        b = deque()
-        a = True
-        place2 = []
-        for i in place:
-            place2.append(list(i))
-        for j in range(5):
-            for s in range(5):
-                if place2[j][s] == 'P':
-
-                    b.append([j, s])
-
-        if len(b) == 0:
-            return 1
-        for i in b:
-
-            stack = deque()
-            stack.append(i)
-            place3 = copy.deepcopy(place2)
-            place3[i[0]][i[1]] = 0
-            while stack:
-                x, y = stack.popleft()
-                for i in range(4):
-                    nx = dx[i] + x
-                    ny = dy[i] + y
-
-                    if nx < 0 or ny < 0 or nx >= 5 or ny >= 5:
-                        continue
-                    if place3[nx][ny] == 'X':
-                        continue
-                    if place3[nx][ny] == 'O':
-                        place3[nx][ny] = place3[x][y] + 1
-                        stack.append([nx,ny])
-                    elif place3[nx][ny] == 'P':
-                        if place3[x][y]+1 <= 2:
-                            return 0
-                        stack.append([nx,ny])
-                        place3[nx][ny] = 0
-
-
-        return 1
-
-    for i in places:
-        answer.append(bfs(i))
-
-    return answer
-
-print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
+for i in li2:
+    binary(i,0,len(li)-1)
+print(*ans)
