@@ -2592,23 +2592,71 @@ import math
 #
 # print(solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]))
 
+# n = int(input())
+# li = sorted(list(map(int,input().split())))
+# m = int(input())
+# li2 = list(map(int,input().split()))
+# ans = []
+#
+# def binary(i, start, end):
+#     mid = (start+end) // 2
+#     if start > end:
+#         ans.append(0)
+#     elif i == li[mid]:
+#         ans.append(1)
+#     elif i > li[mid]:
+#         binary(i,mid+1,end)
+#     else:
+#         binary(i,start,mid-1)
+#
+# for i in li2:
+#     binary(i,0,len(li)-1)
+# print(*ans)
+
+# import math
+#
+# n,m = map(int,input().split(':'))
+# gcd1 = math.gcd(n,m)
+# print(str(int(n/gcd1))+':'+str(int(m/gcd1)))
+
 n = int(input())
-li = sorted(list(map(int,input().split())))
-m = int(input())
-li2 = list(map(int,input().split()))
-ans = []
+ball = list(map(int,input().split()))
+ball_count = 0
+base = [0,0,0]
 
-def binary(i, start, end):
-    mid = (start+end) // 2
-    if start > end:
-        ans.append(0)
-    elif i == li[mid]:
-        ans.append(1)
-    elif i > li[mid]:
-        binary(i,mid+1,end)
-    else:
-        binary(i,start,mid-1)
+point = []
 
-for i in li2:
-    binary(i,0,len(li)-1)
-print(*ans)
+def points():
+    if base[-1] == 0:
+        base[-1] = 1
+    elif base[-1] == 1:
+        if base[1] == 0:
+            base[1] = 1
+        elif base[1] == 1:
+            if base[0] == 0:
+                base[0] = 1
+            else:
+                base[0] = 1
+                point.append(1)
+for i in ball:
+    if i == 1:
+        ball_count += 1
+        if ball_count == 4:
+            points()
+            ball_count = 0
+    elif i == 2:
+        ball_count = 0
+        points()
+
+    elif i == 3:
+        ball_count += 1
+        base.append(0)
+        point.append(base[0])
+        base = base[1:]
+        if ball_count == 4:
+            points()
+            ball_count = 0
+try:
+    print(sum(point))
+except:
+    print(0)
