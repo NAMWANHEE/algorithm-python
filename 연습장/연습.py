@@ -2619,44 +2619,79 @@ import math
 # gcd1 = math.gcd(n,m)
 # print(str(int(n/gcd1))+':'+str(int(m/gcd1)))
 
-n = int(input())
-ball = list(map(int,input().split()))
-ball_count = 0
-base = [0,0,0]
+# n = int(input())
+# ball = list(map(int,input().split()))
+# ball_count = 0
+# base = [0,0,0]
+#
+# point = []
+#
+# def points():
+#     if base[-1] == 0:
+#         base[-1] = 1
+#     elif base[-1] == 1:
+#         if base[1] == 0:
+#             base[1] = 1
+#         elif base[1] == 1:
+#             if base[0] == 0:
+#                 base[0] = 1
+#             else:
+#                 base[0] = 1
+#                 point.append(1)
+# for i in ball:
+#     if i == 1:
+#         ball_count += 1
+#         if ball_count == 4:
+#             points()
+#             ball_count = 0
+#     elif i == 2:
+#         ball_count = 0
+#         points()
+#
+#     elif i == 3:
+#         ball_count += 1
+#         base.append(0)
+#         point.append(base[0])
+#         base = base[1:]
+#         if ball_count == 4:
+#             points()
+#             ball_count = 0
+# try:
+#     print(sum(point))
+# except:
+#     print(0)
 
-point = []
 
-def points():
-    if base[-1] == 0:
-        base[-1] = 1
-    elif base[-1] == 1:
-        if base[1] == 0:
-            base[1] = 1
-        elif base[1] == 1:
-            if base[0] == 0:
-                base[0] = 1
-            else:
-                base[0] = 1
-                point.append(1)
-for i in ball:
-    if i == 1:
-        ball_count += 1
-        if ball_count == 4:
-            points()
-            ball_count = 0
-    elif i == 2:
-        ball_count = 0
-        points()
+n,m = map(int,input().split())
+train = [deque([0])*20 for _ in range(n)]
+ans = []
+for i in range(m):
+    command = list(map(int,input().split()))
+    if command[0] == 1:
+        if train[command[1]-1][command[2]-1] == 0:
+            train[command[1]-1][command[2]-1] = 1
+    elif command[0] == 2:
+        if train[command[1]-1][command[2]-1] == 1:
+            train[command[1]-1][command[2]-1] = 0
+    elif command[0] == 3:
+        train[command[1]-1].appendleft(0)
+        train[command[1] - 1].pop()
+    elif command[0] == 4:
+        train[command[1] - 1].append(0)
+        train[command[1] - 1].popleft()
 
-    elif i == 3:
-        ball_count += 1
-        base.append(0)
-        point.append(base[0])
-        base = base[1:]
-        if ball_count == 4:
-            points()
-            ball_count = 0
-try:
-    print(sum(point))
-except:
-    print(0)
+
+for i in train:
+    flag = False
+    if ans:
+        for j in ans:
+            if j == i:
+                flag = True
+                break
+        if flag == False:
+            ans.append(i)
+
+    else:
+        ans.append(i)
+
+print(len(ans))
