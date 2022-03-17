@@ -34,4 +34,4 @@ for i in train:
     else:                   # 첫 기차는 무조건 은하수를 건널수 있으므로 추가
         ans.append(i)
 
-print(len(ans))             # 은하수를 건널 수 있는 기차의 갯수 출력
+print(len(ans))             # 은하수를 건널 수 있는 기차의 갯수 출력력
