@@ -27,7 +27,7 @@ def solution(maps):
                 q.append([nx, ny])      # 큐에 이동 위치좌표 추가
 
     if maps[len_x - 1][len_y - 1] == 1: # 마지막 값이 1인 경우 (상대 진영 도달 x)
-        answer = -1                     # -1 출력
+        answer = -1                     # -1 출력력
     else:
-        answer = maps[len_x - 1][len_y - 1]
+       answer = maps[len_x - 1][len_y - 1]
     return answer
