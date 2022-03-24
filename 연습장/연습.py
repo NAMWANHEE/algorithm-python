@@ -2730,42 +2730,66 @@ import math
 
 from collections import defaultdict
 
-from collections import defaultdict
+# from collections import defaultdict
+#
+#
+# def solution(fees, records):
+#     incar = defaultdict(int)
+#     timedict = defaultdict(int)
+#     answer = []
+#     fulltime = 23 * 60 + 59
+#     for i in records:
+#
+#         number = i.split(' ')[1]
+#
+#         time = i.split(' ')[0].split(':')
+#         minute = int(time[0]) * 60 + int(time[1])
+#         if i.split(' ')[-1] == 'IN':
+#             incar[number] = minute
+#         else:
+#
+#             timedict[number] += (minute - incar[number])
+#             incar[number] = -1
+#     for i in incar:
+#         if incar[i] != -1:
+#             timedict[i] += fulltime - incar[i]
+#             incar[i] = -1
+#
+#     for i in sorted(timedict):
+#         if timedict[i] <= fees[0]:
+#             answer.append(fees[1])
+#         else:
+#             if (timedict[i] - fees[0]) % fees[2] == 0:
+#                 fee = fees[1] + int((timedict[i] - fees[0]) / fees[2]) * fees[3]
+#             else:
+#                 fee = fees[1] + (int((timedict[i] - fees[0]) / fees[2]) + 1) * fees[3]
+#             answer.append(fee)
+#     return print(answer)
+#
+# solution([120, 0, 60, 591],["16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"])
+# solution([1, 461, 1, 10],["00:00 1234 IN"])
 
+# a = "a a a a a a a a a a "
+# print(a.split(' '))
+# def solution(s):
+#     answer = ''
+#
+#     s = s.lower()
+#     s = s.split(' ')
+#
+#     for i in s:
+#         try:
+#             if i[0].isdigit():
+#                 answer += i + ' '
+#             else:
+#                 answer += i[0].upper() + i[1:] + ' '
+#         except:
+#             answer += ' '
+#
+#     return answer[:-1]
+#
+# print(solution("a a a a a a a a a a "))
 
-def solution(fees, records):
-    incar = defaultdict(int)
-    timedict = defaultdict(int)
-    answer = []
-    fulltime = 23 * 60 + 59
-    for i in records:
-
-        number = i.split(' ')[1]
-
-        time = i.split(' ')[0].split(':')
-        minute = int(time[0]) * 60 + int(time[1])
-        if i.split(' ')[-1] == 'IN':
-            incar[number] = minute
-        else:
-
-            timedict[number] += (minute - incar[number])
-            incar[number] = -1
-    for i in incar:
-        if incar[i] != -1:
-            timedict[i] += fulltime - incar[i]
-            incar[i] = -1
-
-    for i in sorted(timedict):
-        if timedict[i] <= fees[0]:
-            answer.append(fees[1])
-        else:
-            if (timedict[i] - fees[0]) % fees[2] == 0:
-                fee = fees[1] + int((timedict[i] - fees[0]) / fees[2]) * fees[3]
-            else:
-                fee = fees[1] + (int((timedict[i] - fees[0]) / fees[2]) + 1) * fees[3]
-            answer.append(fee)
-    return print(answer)
-
-solution([120, 0, 60, 591],["16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"])
-solution([1, 461, 1, 10],["00:00 1234 IN"])
-
+a = '   '
+print(a)
+print(a[0].isdigit())
