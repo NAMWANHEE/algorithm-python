@@ -2695,37 +2695,77 @@ import math
 #         ans.append(i)
 #
 # print(len(ans))
-from collections import defaultdict, deque
+# from collections import defaultdict, deque
+#
+# n = int(input())        # 사진틀의 개수
+# m = int(input())        # 전체 학생의 총 추천 횟수
+# photo = deque()         # 사진틀담을 데크
+# dic = defaultdict(int)  # 학생의 추천 횟수 담을 딕셔너리
+# re = list(map(int,input().split())) # 추천받은 학생을 나타내는 번호
+#
+# for i in re:
+#     if len(photo) == n:                 # 사진틀의 개수가 꽉찼을때
+#         if i in photo:                  # 사진틀에 추천받은 학생이 이미 존재할 경우
+#             dic[i] += 1                 # 추천 횟수 +1
+#             continue                    # 다음 학생 번호로 넘어감
+#
+#         re_min = min(list(dic.values())) # 추천 받은 학생중 최소의 추천 개수
+#         for j in range(n):               # 모든 사진틀에 대해
+#             if dic[photo[j]] == re_min:  # 해당 학생의 추천 수가 최소의 추천 개수와 같을 경우
+#                 del dic[photo[j]]        # 해당 학생 추천개수 담는 딕셔너리에서 제거
+#                 del photo[j]             # 해당 학생 사진틀에서 제거
+#                 break                    # 반복문 종료
+#
+#         photo.append(i)                  # 현재 학생 추가
+#         dic[i] += 1                      # 현재 학생 추천수 +1
+#
+#     else:                     # 사진틀이 비어있는 경우가 있을때
+#         if i in photo:        # 학생이 이미 사진틀에 있는 경우
+#             dic[i] += 1       # 추천수만 +1
+#         else:
+#             photo.append(i)   # 학생이 사진틀에 없을 경우 사진틀에 추가 후 추천수 +1
+#             dic[i] += 1
+#
+# print(*sorted(photo))
 
-n = int(input())        # 사진틀의 개수
-m = int(input())        # 전체 학생의 총 추천 횟수
-photo = deque()         # 사진틀담을 데크
-dic = defaultdict(int)  # 학생의 추천 횟수 담을 딕셔너리
-re = list(map(int,input().split())) # 추천받은 학생을 나타내는 번호
+from collections import defaultdict
 
-for i in re:
-    if len(photo) == n:                 # 사진틀의 개수가 꽉찼을때
-        if i in photo:                  # 사진틀에 추천받은 학생이 이미 존재할 경우
-            dic[i] += 1                 # 추천 횟수 +1
-            continue                    # 다음 학생 번호로 넘어감
+from collections import defaultdict
 
-        re_min = min(list(dic.values())) # 추천 받은 학생중 최소의 추천 개수
-        for j in range(n):               # 모든 사진틀에 대해
-            if dic[photo[j]] == re_min:  # 해당 학생의 추천 수가 최소의 추천 개수와 같을 경우
-                del dic[photo[j]]        # 해당 학생 추천개수 담는 딕셔너리에서 제거
-                del photo[j]             # 해당 학생 사진틀에서 제거
-                break                    # 반복문 종료
 
-        photo.append(i)                  # 현재 학생 추가
-        dic[i] += 1                      # 현재 학생 추천수 +1
+def solution(fees, records):
+    incar = defaultdict(int)
+    timedict = defaultdict(int)
+    answer = []
+    fulltime = 23 * 60 + 59
+    for i in records:
 
-    else:                     # 사진틀이 비어있는 경우가 있을때
-        if i in photo:        # 학생이 이미 사진틀에 있는 경우
-            dic[i] += 1       # 추천수만 +1
+        number = i.split(' ')[1]
+
+        time = i.split(' ')[0].split(':')
+        minute = int(time[0]) * 60 + int(time[1])
+        if i.split(' ')[-1] == 'IN':
+            incar[number] = minute
         else:
-            photo.append(i)   # 학생이 사진틀에 없을 경우 사진틀에 추가 후 추천수 +1
-            dic[i] += 1
 
-print(*sorted(photo))
+            timedict[number] += (minute - incar[number])
+            incar[number] = -1
+    for i in incar:
+        if incar[i] != -1:
+            timedict[i] += fulltime - incar[i]
+            incar[i] = -1
 
+    for i in sorted(timedict):
+        if timedict[i] <= fees[0]:
+            answer.append(fees[1])
+        else:
+            if (timedict[i] - fees[0]) % fees[2] == 0:
+                fee = fees[1] + int((timedict[i] - fees[0]) / fees[2]) * fees[3]
+            else:
+                fee = fees[1] + (int((timedict[i] - fees[0]) / fees[2]) + 1) * fees[3]
+            answer.append(fee)
+    return print(answer)
+
+solution([120, 0, 60, 591],["16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"])
+solution([1, 461, 1, 10],["00:00 1234 IN"])
 
