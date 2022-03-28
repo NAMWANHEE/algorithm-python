@@ -2789,7 +2789,29 @@ from collections import defaultdict
 #     return answer[:-1]
 #
 # print(solution("a a a a a a a a a a "))
+dic = {'a':[123]}
+print(dic['a'][0])
+def solution(tickets):
+    answer = []
+    dic = dict()
+    for (start,end) in tickets:
+        if start in dic:
+            dic[start].append(end)
+        else:
+            dic[start] = [end]
+    for i in dic.keys():
+        dic[i].sort(reverse=True)
 
-a = '   '
-print(a)
-print(a[0].isdigit())
+    stack =['ICN']
+
+    while stack:
+        now = stack[-1]
+        if (now not in dic) or (not dic[now]):
+            answer.append(stack.pop())
+        else:
+            stack.append(dic[now].pop())
+
+
+    return answer
+
+solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
