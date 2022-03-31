@@ -2789,29 +2789,51 @@ from collections import defaultdict
 #     return answer[:-1]
 #
 # print(solution("a a a a a a a a a a "))
-dic = {'a':[123]}
-print(dic['a'][0])
-def solution(tickets):
-    answer = []
-    dic = dict()
-    for (start,end) in tickets:
-        if start in dic:
-            dic[start].append(end)
-        else:
-            dic[start] = [end]
-    for i in dic.keys():
-        dic[i].sort(reverse=True)
+# dic = {'a':[123]}
+# print(dic['a'][0])
+# def solution(tickets):
+#     answer = []
+#     dic = dict()
+#     for (start,end) in tickets:
+#         if start in dic:
+#             dic[start].append(end)
+#         else:
+#             dic[start] = [end]
+#     for i in dic.keys():
+#         dic[i].sort(reverse=True)
+#
+#     stack =['ICN']
+#
+#     while stack:
+#         now = stack[-1]
+#         if (now not in dic) or (not dic[now]):
+#             answer.append(stack.pop())
+#         else:
+#             stack.append(dic[now].pop())
+#
+#
+#     return answer
+#
+# solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
 
-    stack =['ICN']
+import heapq
+def solution(n, works):
+    answer = 0
+    new = []
+    if sum(works) < n:
+        return 0
+    for i in works:
+        new.append(-i)
+    heapq.heapify(new)
+    for i in range(n):
+        num = heapq.heappop(new)
+        num += 1
+        heapq.heappush(new,num)
 
-    while stack:
-        now = stack[-1]
-        if (now not in dic) or (not dic[now]):
-            answer.append(stack.pop())
-        else:
-            stack.append(dic[now].pop())
-
+    for i in new:
+        answer += i**2
 
     return answer
 
-solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
+print(solution(99, [2, 15, 22, 55, 55]))
+
