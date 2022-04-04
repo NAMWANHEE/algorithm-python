@@ -2816,24 +2816,42 @@ from collections import defaultdict
 #
 # solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
 
-import heapq
-def solution(n, works):
-    answer = 0
-    new = []
-    if sum(works) < n:
-        return 0
-    for i in works:
-        new.append(-i)
-    heapq.heapify(new)
-    for i in range(n):
-        num = heapq.heappop(new)
-        num += 1
-        heapq.heappush(new,num)
+# import heapq
+# def solution(n, works):
+#     answer = 0
+#     new = []
+#     if sum(works) < n:
+#         return 0
+#     for i in works:
+#         new.append(-i)
+#     heapq.heapify(new)
+#     for i in range(n):
+#         num = heapq.heappop(new)
+#         num += 1
+#         heapq.heappush(new,num)
+#
+#     for i in new:
+#         answer += i**2
+#
+#     return answer
+#
+# print(solution(99, [2, 15, 22, 55, 55]))
 
-    for i in new:
-        answer += i**2
+n = input()
+count = 0
+def test(n):
+    global count
+    if len(n) == 1:
+        print(count)
+        if n % 3 == 0:
+            print('YES')
+        else:
+            print('NO')
+    else:
+        s = 0
+        for i in n:
+            s += int(i)
+        count += 1
+        test(str(s))
 
-    return answer
-
-print(solution(99, [2, 15, 22, 55, 55]))
-
+test(n)
