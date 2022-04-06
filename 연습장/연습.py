@@ -2837,21 +2837,48 @@ from collections import defaultdict
 #
 # print(solution(99, [2, 15, 22, 55, 55]))
 
-n = input()
-count = 0
-def test(n):
-    global count
-    if len(n) == 1:
-        print(count)
-        if n % 3 == 0:
-            print('YES')
-        else:
-            print('NO')
-    else:
-        s = 0
-        for i in n:
-            s += int(i)
-        count += 1
-        test(str(s))
+# n = input()
+# count = 0
+# def test(n):
+#     global count
+#     if len(n) == 1:
+#         print(count)
+#         if n % 3 == 0:
+#             print('YES')
+#         else:
+#             print('NO')
+#     else:
+#         s = 0
+#         for i in n:
+#             s += int(i)
+#         count += 1
+#         test(str(s))
+#
+# test(n)
 
-test(n)
+def solution(N, stages):
+    answer = []
+    ans = []
+    stages = sorted(stages)
+    for i in range(1,N+1):
+        a = len(stages)
+        count = 0
+        if a == 0:
+            answer.append([i,0])
+        else:
+            for j in stages:
+                if i >= j:
+                    count += 1
+                elif i < j:
+                    break
+            for s in range(count):
+                stages.pop(0)
+            answer.append([i,count/a])
+    answer.sort(key=lambda x: x[1],reverse=True)
+    for i in answer:
+        ans.append(i[0])
+    print(answer)
+    return ans
+
+
+print(solution(5,[1,2,2,1,3]))
