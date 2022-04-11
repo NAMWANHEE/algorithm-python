@@ -2856,29 +2856,46 @@ from collections import defaultdict
 #
 # test(n)
 
-def solution(N, stages):
-    answer = []
-    ans = []
-    stages = sorted(stages)
-    for i in range(1,N+1):
-        a = len(stages)
-        count = 0
-        if a == 0:
-            answer.append([i,0])
-        else:
-            for j in stages:
-                if i >= j:
-                    count += 1
-                elif i < j:
-                    break
-            for s in range(count):
-                stages.pop(0)
-            answer.append([i,count/a])
-    answer.sort(key=lambda x: x[1],reverse=True)
-    for i in answer:
-        ans.append(i[0])
-    print(answer)
-    return ans
+# def solution(N, stages):
+#     answer = []
+#     ans = []
+#     stages = sorted(stages)
+#     for i in range(1,N+1):
+#         a = len(stages)
+#         count = 0
+#         if a == 0:
+#             answer.append([i,0])
+#         else:
+#             for j in stages:
+#                 if i >= j:
+#                     count += 1
+#                 elif i < j:
+#                     break
+#             for s in range(count):
+#                 stages.pop(0)
+#             answer.append([i,count/a])
+#     answer.sort(key=lambda x: x[1],reverse=True)
+#     for i in answer:
+#         ans.append(i[0])
+#     print(answer)
+#     return ans
+#
+#
+# print(solution(5,[1,2,2,1,3]))
+from collections import defaultdict
+n = int(input())
+li = []
+dict = defaultdict(int)
+for i in range(n):
+    li.append(input())
 
-
-print(solution(5,[1,2,2,1,3]))
+for i in li:
+    leng = len(i)           # 현재 단어의 길이
+    for j in range(leng):
+        dict[i[j]] += 10 ** (leng-j-1)  # 현재 단어의 문자의 자리에 맞게 사전에 갱신
+ans = 0
+num = 9
+for i in sorted(dict.values(),reverse=True):    # 사전의 value를 기준으로 내림차순으로 정렬
+    ans += num*i    # 가장 큰 값부터 9부터 -1 씩하며 곱해줌
+    num -= 1
+print(ans)
