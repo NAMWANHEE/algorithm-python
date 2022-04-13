@@ -2882,20 +2882,41 @@ from collections import defaultdict
 #
 #
 # print(solution(5,[1,2,2,1,3]))
-from collections import defaultdict
-n = int(input())
-li = []
-dict = defaultdict(int)
-for i in range(n):
-    li.append(input())
+# from collections import defaultdict
+# n = int(input())
+# li = []
+# dict = defaultdict(int)
+# for i in range(n):
+#     li.append(input())
+#
+# for i in li:
+#     leng = len(i)           # 현재 단어의 길이
+#     for j in range(leng):
+#         dict[i[j]] += 10 ** (leng-j-1)  # 현재 단어의 문자의 자리에 맞게 사전에 갱신
+# ans = 0
+# num = 9
+# for i in sorted(dict.values(),reverse=True):    # 사전의 value를 기준으로 내림차순으로 정렬
+#     ans += num*i    # 가장 큰 값부터 9부터 -1 씩하며 곱해줌
+#     num -= 1
+# print(ans)
 
-for i in li:
-    leng = len(i)           # 현재 단어의 길이
-    for j in range(leng):
-        dict[i[j]] += 10 ** (leng-j-1)  # 현재 단어의 문자의 자리에 맞게 사전에 갱신
+n = input()
+m = input()
+compare = ''
 ans = 0
-num = 9
-for i in sorted(dict.values(),reverse=True):    # 사전의 value를 기준으로 내림차순으로 정렬
-    ans += num*i    # 가장 큰 값부터 9부터 -1 씩하며 곱해줌
-    num -= 1
+for i in n:
+
+    if len(compare) == len(m):
+        if m == compare:
+            ans += 1
+            compare = ''
+            compare += i
+        else:
+            compare = compare[1:]+i
+
+    else:
+        compare += i
+if compare == m:
+    ans += 1
+
 print(ans)
