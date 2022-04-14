@@ -2989,21 +2989,58 @@ from collections import defaultdict
 # else:
 #     print(max(answer_list))
 
-n = int(input())
-from itertools import combinations
-s = list(map(int,input().split()))
-a = []
-for i in range(1,n+1):
-    for j in list(combinations(s,i)):
-        a.append(sum(j))
-com = 0
-ans = []
-for i in sorted(list(set(a))):
-    if com+1 != i:
-        ans.append(com+1)
+# n = int(input())
+# from itertools import combinations
+# s = list(map(int,input().split()))
+# a = []
+# for i in range(1,n+1):
+#     for j in list(combinations(s,i)):
+#         a.append(sum(j))
+# com = 0
+# ans = []
+# for i in sorted(list(set(a))):
+#     if com+1 != i:
+#         ans.append(com+1)
+#         break
+#     com += 1
+# if len(ans) == 0:
+#     print(sum(s)+1)
+# else:
+#     print(ans[0])
+dx = [1,-1,0,0,1,1,-1,-1]
+dy = [0,0,1,-1,1,-1,1,-1]
+while True:
+    w,h = map(int,input().split())
+    if w == 0 and h == 0:
         break
-    com += 1
-if len(ans) == 0:
-    print(sum(s)+1)
-else:
-    print(ans[0])
+    maps = []
+    for i in range(h):
+        maps.append(list(map(int,input().split())))
+    visit = [[0]*w for _ in range(h)]
+
+
+    answer = 0
+    def bfs(i,j):
+        q = deque()
+        q.append([i,j])
+        while q:
+            x,y = q.popleft()
+            for i in range(8):
+                nx = dx[i] + x
+                ny = dy[i] + y
+
+                if nx < 0 or ny < 0 or nx > h-1 or ny > w-1 or visit[nx][ny] == 1:
+                    continue
+                if maps[nx][ny] == 0:
+                    continue
+                else:
+                    visit[nx][ny] = 1
+                    q.append([nx,ny])
+
+    for i in range(h):
+        for j in range(w):
+            if maps[i][j] == 1 and visit[i][j] == 0:
+                visit[i][j] = 1
+                bfs(i,j)
+                answer += 1
+    print(answer)
