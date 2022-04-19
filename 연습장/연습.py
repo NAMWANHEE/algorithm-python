@@ -3045,21 +3045,41 @@ from collections import defaultdict
 #                 answer += 1
 #     print(answer)
 
-s = list(input())
-t = list(input())
+# s = list(input())
+# t = list(input())
+#
+# while True:
+#     if len(s) == len(t):
+#         break
+#     if t[-1] == 'A':
+#         t.pop()
+#     else:
+#         t.pop()
+#         t = t[::-1]
+#
+# if s == t:
+#     print(1)
+# else:
+#     print(0)
 
-while True:
-    if len(s) == len(t):
-        break
-    if t[-1] == 'A':
-        t.pop()
-    else:
-        t.pop()
-        t = t[::-1]
 
-if s == t:
-    print(1)
+n = int(input())
+n_li = sorted(list(map(int,input().split())),reverse=True)
+m = int(input())
+m_li = sorted(list(map(int,input().split())),reverse=True)
+
+ans = 0
+if m_li[0] > n_li[0]:
+    print(-1)
+
 else:
-    print(0)
+    while m_li:
+        for i in n_li:
+            for j in m_li:
+                if i >= j:
+                    m_li.remove(j)
+                    break
 
 
+        ans += 1
+    print(ans)
