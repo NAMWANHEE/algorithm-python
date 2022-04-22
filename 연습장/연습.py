@@ -3084,17 +3084,31 @@ from collections import defaultdict
 #         ans += 1
 #     print(ans)
 
-n = int(input())
-k = int(input())
-sensor = sorted(list(set(list(map(int,input().split())))))
-if k >= n:  # 센서보다 집중국이 많을 경우
-    print(0)
-else:
-    a = [] # 정렬된 각 센서값 사이의 거리를 담을 리스트
-    for i in range(len(sensor)-1):
-        a.append(sensor[i+1]-sensor[i]) # 바로 옆의 센서와의 거리 차이 추가
-    a.sort()    # 거리를 오름차순으로 정렬
+# n = int(input())
+# k = int(input())
+# sensor = sorted(list(set(list(map(int,input().split())))))
+# if k >= n:  # 센서보다 집중국이 많을 경우
+#     print(0)
+# else:
+#     a = [] # 정렬된 각 센서값 사이의 거리를 담을 리스트
+#     for i in range(len(sensor)-1):
+#         a.append(sensor[i+1]-sensor[i]) # 바로 옆의 센서와의 거리 차이 추가
+#     a.sort()    # 거리를 오름차순으로 정렬
+#
+#     for i in range(k-1): # k-1 번 만큼 가장 거리가 큰 값을 반복해서 pop
+#         a.pop()
+#     print(sum(a)) # 답: 남아있는 센서간의 거리들의 총합
 
-    for i in range(k-1): # k-1 번 만큼 가장 거리가 큰 값을 반복해서 pop
-        a.pop()
-    print(sum(a)) # 답: 남아있는 센서간의 거리들의 총합
+n, m = map(int,input().split())
+member = list(map(int,input().split()))
+
+cost = []   # 각각 다음 원생간의 키차이를 담을 리스트
+for i in range(len(member)-1):
+    cost.append(member[i+1]-member[i]) # 자기 다음 사람과의 키차이를 추가
+cost.sort() # 키 차이 별로 정렬
+
+for i in range(m-1): # m-1 번 만큼 반복
+    cost.pop()       # 키 차이가 큰 순으로 m-1 번 pop
+print(sum(cost)) # 리스트의 총합이 티셔츠를 만드는 최소 비용
+
+
