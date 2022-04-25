@@ -3112,38 +3112,66 @@ from collections import defaultdict
 # print(sum(cost)) # 리스트의 총합이 티셔츠를 만드는 최소 비용
 
 
-n = int(input())
-plus =[]
-minus =[]
-ans = 0
-zero = False
-for i in range(n):
-    a = int(input())
-    if a == 1:
-        ans += 1
-    elif a > 1:
-        plus.append(a)
-    elif a == 0:
-        zero = True
-    elif a < 0:
-        minus.append(a)
+# n = int(input())
+# plus =[]
+# minus =[]
+# ans = 0
+# zero = False
+# for i in range(n):
+#     a = int(input())
+#     if a == 1:
+#         ans += 1
+#     elif a > 1:
+#         plus.append(a)
+#     elif a == 0:
+#         zero = True
+#     elif a < 0:
+#         minus.append(a)
+#
+# plus.sort(reverse=True)
+# minus.sort()
+#
+# for i in range(0,len(plus),2):
+#     if i == len(plus)-1:
+#         ans += plus[i]
+#     else:
+#         ans += plus[i]*plus[i+1]
+#
+# for i in range(0,len(minus),2):
+#     if i == len(minus)-1:
+#         if zero:
+#             pass
+#         else:
+#             ans += minus[i]
+#     else:
+#         ans += minus[i]*minus[i+1]
+#
+# print(ans)
 
-plus.sort(reverse=True)
-minus.sort()
+n,k = map(int,input().split())
+num = input()
+count = 0   # 숫자를 지운 횟수 카운트할 변수
+stack = []  # 정답담을 스택
+for i in num:       # 각 자리수만큼 반복
+    if count == k:      # 숫자를 k개 지웠다면
+        stack.append(i) # 스택에 현재 숫자를 넣고 continue
+        continue
 
-for i in range(0,len(plus),2):
-    if i == len(plus)-1:
-        ans += plus[i]
+    if not stack:       # 스택이 비어있을경우(초기상태)
+        stack.append(i) # 숫자를 스택에 추가
     else:
-        ans += plus[i]*plus[i+1]
+        for j in range(len(stack)): # 현재 스택에 들어있는 숫자만큼 반복
+            if stack[-1] < i:       # 스택의 마지막 값이 현재 숫자보다 작을 경우
+                stack.pop()         # 스택의 마지막 값 pop
+                count += 1          # 삭제 했으니 카운트 + 1
 
-for i in range(0,len(minus),2):
-    if i == len(minus)-1:
-        if zero:
-            pass
-        else:
-            ans += minus[i]
-    else:
-        ans += minus[i]*minus[i+1]
+            else:                   # 스택의 마지막값이 현재가 숫자보다 크거나 같을경우 현재 반복문 break
+                break
+            if count == k:          # 삭제한 횟수가 k와 같다면 break
+                break
+        stack.append(i) # 스택에 현재 숫자 추가
 
-print(ans)
+while len(stack) != (n-k):  # 현재 스택의 길이가 (n-k) 와 같을때까지 반복하며 스택 pop
+    stack.pop()
+print(''.join(stack))
+
