@@ -3207,19 +3207,59 @@ from collections import defaultdict
 #         if in_car[out_car[i]] > in_car[out_car[j]]: # 현재 차량보다 늦게 터널에서 빠져나온 차량 중
 #             ans +=1                                 # 터널에 들어간 차량의 순서가 빠른경우
 #             break                                   # 정답 카운트 + 1 후 break
-# print(ans)
-import sys
-k, l = map(int,input().split())
-
-stu = {}
-
-for i in range(l):
-    num = sys.stdin.readline().strip()
-    stu[num] = i+1
-
-count = 0
-for i in sorted(stu.items(),key=lambda x: x[1]):
-    if count == k:
-        break
-    print(i[0])
-    count += 1
+# # print(ans)
+# import sys
+# k, l = map(int,input().split())
+#
+# stu = {}
+#
+# for i in range(l):
+#     num = sys.stdin.readline().strip()
+#     stu[num] = i+1
+#
+# count = 0
+# for i in sorted(stu.items(),key=lambda x: x[1]):
+#     if count == k:
+#         break
+#     print(i[0])
+#     count += 1
+# from itertools import permutations
+# n = int(input())
+# s = [i for i in range(1,n+1)]
+# a = list(map(int,input().split()))
+# new = sorted(list(permutations(s,n)))
+# print(new)
+# flag = True
+# for i in range(1,n):
+#     if a[n-i] < a[n-i-1]:
+#         n1 = a[n-i]
+#         n2 = a[n-i-1]
+#         a[n-i] = n2
+#         a[n-i-1] = n1
+#         flag = False
+#         break
+#
+# if flag == True:
+#     print(-1)
+# else:
+#     print(*a)
+import copy
+n = int(input())
+word = list(input())
+ans = 0
+for i in range(n-1):
+    w = list(input())
+    word2 = copy.deepcopy(word)
+    if abs(len(word) - len(w)) >= 2:
+        continue
+    for _ in range(len(word2)):
+        a = word2.pop(0)
+        if a in w:
+            w.remove(a)
+        else:
+            word2.append(a)
+    n1 = len(word2)
+    n2 = len(w)
+    if (n1 == 1 and n2 == 1) or (n1 == 1 and n2 == 0) or (n1 == 0 and n2 == 1) or (n1 == 0 and n2 == 0):
+        ans += 1
+print(ans)
