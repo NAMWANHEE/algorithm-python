@@ -3243,23 +3243,72 @@ from collections import defaultdict
 #     print(-1)
 # else:
 #     print(*a)
-import copy
-n = int(input())
-word = list(input())
-ans = 0
-for i in range(n-1):
-    w = list(input())
-    word2 = copy.deepcopy(word)
-    if abs(len(word) - len(w)) >= 2:
-        continue
-    for _ in range(len(word2)):
-        a = word2.pop(0)
-        if a in w:
-            w.remove(a)
-        else:
-            word2.append(a)
-    n1 = len(word2)
-    n2 = len(w)
-    if (n1 == 1 and n2 == 1) or (n1 == 1 and n2 == 0) or (n1 == 0 and n2 == 1) or (n1 == 0 and n2 == 0):
-        ans += 1
-print(ans)
+# import copy
+# n = int(input())
+# word = list(input())
+# ans = 0
+# for i in range(n-1):
+#     w = list(input())
+#     word2 = copy.deepcopy(word)
+#     if abs(len(word) - len(w)) >= 2:
+#         continue
+#     for _ in range(len(word2)):
+#         a = word2.pop(0)
+#         if a in w:
+#             w.remove(a)
+#         else:
+#             word2.append(a)
+#     n1 = len(word2)
+#     n2 = len(w)
+#     if (n1 == 1 and n2 == 1) or (n1 == 1 and n2 == 0) or (n1 == 0 and n2 == 1) or (n1 == 0 and n2 == 0):
+#         ans += 1
+# print(ans)
+
+# n= int(input())
+# li = []
+# for i in range(n):
+#     li.append(list(map(int,input().split())))
+# m = max(x[1] for x in li)
+# li = sorted(li,key=lambda x:x[0])
+# new = []
+# m1 = 0
+# for i in range(len(li)):
+#     if li[i][1] == m:
+#         new.append(li[i])
+#         break
+#     else:
+#         if li[i][1] > m1:
+#             m1 = li[i][1]
+#             new.append(li[i])
+#
+# m1 = 0
+# for i in range(-1,-len(li)-1,-1):
+#
+#     if li[i][1] == m:
+#         new.append([li[i][0]+1,li[i][1]])
+#         break
+#     else:
+#         if li[i][1] > m1:
+#             m1 = li[i][1]
+#             new.append([li[i][0]+1,li[i][1]])
+#
+# if new[-1] in new[:-1]:
+#     new = new[:-1]
+# new = sorted(new,key=lambda x:x[0])
+#
+# ans = 0
+# for i in range(len(new)-1):
+#     if new[i][1] > new[i+1][1]:
+#         ans += new[i+1][1] * abs(new[i+1][0] - new[i][0])
+#     else:
+#         ans += new[i][1] * abs(new[i + 1][0] - new[i][0])
+#
+# print(ans)
+
+n,k = map(int,input().split())
+li = list(map(int,input().split()))
+ans = []
+m = -999999999
+for i in range(n-k+1):
+    m = max(m,sum(li[i:i+k]))
+print(m)
