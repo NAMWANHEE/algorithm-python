@@ -3422,38 +3422,87 @@ from collections import defaultdict
 #
 # print(ans_dic['sheep'],ans_dic['wolf'])
 
-n = int(input())
-a,b = map(int,input().split())
-m = int(input())
-relation = {i:[] for i in range(1,n+1)}
-visit = [0]* (n+1)
+# n = int(input())
+# a,b = map(int,input().split())
+# m = int(input())
+# relation = {i:[] for i in range(1,n+1)}
+# visit = [0]* (n+1)
+#
+# for i in range(m):
+#     x,y = map(int,input().split())
+#     relation[x].append(y)
+#     relation[y].append(x)
+# q = deque()
+# q.append(a)
+# visit[a] = 1
+# cnt = 0
+# def bfs(li):
+#     re = deque()
+#     while li:
+#         w = li.popleft()
+#         for i in relation[w]:
+#             if i == b:
+#                 return 0
+#             if visit[i] == 0:
+#                 visit[i] =1
+#                 re.append(i)
+#     return re
+#
+# while True:
+#     q = bfs(q)
+#     cnt += 1
+#     if q == 0:
+#         print(cnt)
+#         break
+#     if len(q) == 0:
+#         print(-1)
+#         break
 
-for i in range(m):
-    x,y = map(int,input().split())
-    relation[x].append(y)
-    relation[y].append(x)
+r,c = map(int,input().split())
+land = []
+for i in range(r):
+    land.append([0 for _ in range(c)])
+
+k = int(input())
+for i in range(k):
+    b = list(map(int,input().split()))
+    land[b[0]][b[1]] = 'x'
+
+s = list(map(int,input().split()))
+m = list(map(int,input().split()))
+move = []
+for i in m:
+    if i == 1:
+        move.append([-1,0])
+    elif i == 2:
+        move.append([1,0])
+    elif i == 3:
+        move.append([0,-1])
+    else:
+        move.append([0,1])
+
+
 q = deque()
-q.append(a)
-visit[a] = 1
-cnt = 0
-def bfs(li):
-    re = deque()
-    while li:
-        w = li.popleft()
-        for i in relation[w]:
-            if i == b:
-                return 0
-            if visit[i] == 0:
-                visit[i] =1
-                re.append(i)
-    return re
+q.append(s)
+z = 0
 
-while True:
-    q = bfs(q)
-    cnt += 1
-    if q == 0:
-        print(cnt)
-        break
-    if len(q) == 0:
-        print(-1)
-        break
+while q:
+    x,y = q.popleft()
+    land[x][y] = 'x'
+    for _ in range(4):
+        z1 = z%4
+        nx = x + move[z1][0]
+        ny = y + move[z1][1]
+
+        if nx < 0 or ny < 0 or nx >= r or ny >= c:
+            z += 1
+            continue
+        elif land[nx][ny] == 'x':
+            z += 1
+            continue
+        elif land[nx][ny] == 0:
+            q.append([nx,ny])
+            break
+
+
+print(x,y)
