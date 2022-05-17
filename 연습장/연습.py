@@ -3507,27 +3507,39 @@ from collections import defaultdict
 #
 # print(x,y)
 
-n,w,l = map(int,input().split())
-truck = deque(map(int,input().split()))
-br = deque([0 for _ in range(w)])
-count = 0
-weight = 0
-while True:
+# n,w,l = map(int,input().split())
+# truck = deque(map(int,input().split()))
+# br = deque([0 for _ in range(w)])
+# count = 0
+# weight = 0
+# while True:
+#
+#     out = br.popleft()
+#     weight -= out
+#     count += 1
+#     if truck:
+#         if weight + truck[0] <= l:
+#             weight += truck[0]
+#             br.append(truck.popleft())
+#         else:
+#             br.append(0)
+#
+#
+#     if not br:
+#         break
+#
+#
+# print(count)
 
-    out = br.popleft()
-    weight -= out
-    count += 1
-    if truck:
-        if weight + truck[0] <= l:
-            weight += truck[0]
-            br.append(truck.popleft())
-        else:
-            br.append(0)
+h,w,x,y = map(int,input().split())
+li = []
+for i in range(h+x):
+    li.append(list(map(int,input().split())))
 
 
-    if not br:
-        break
+for i in range(h):
+    for j in range(w):
+        li[i+x][j+y] = li[i+x][j+y] - li[i][j]
 
-
-print(count)
-
+for i in range(len(li)-x):
+    print(*li[i][:-1])
