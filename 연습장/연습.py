@@ -3531,15 +3531,31 @@ from collections import defaultdict
 #
 # print(count)
 
-h,w,x,y = map(int,input().split())
-li = []
-for i in range(h+x):
-    li.append(list(map(int,input().split())))
+# h,w,x,y = map(int,input().split())
+# li = []
+# for i in range(h+x):
+#     li.append(list(map(int,input().split())))
+#
+#
+# for i in range(h):
+#     for j in range(w):
+#         li[i+x][j+y] = li[i+x][j+y] - li[i][j]
+#
+# for i in range(len(li)-x):
+#     print(*li[i][:-1])
 
+n,m = map(int,input().split())
+miro = []
+for i in range(n):
+    miro.append(list(map(int,input().split())))
 
-for i in range(h):
-    for j in range(w):
-        li[i+x][j+y] = li[i+x][j+y] - li[i][j]
+for i in range(n):
+    for j in range(m):
+        if i-1 >= 0 and j-1 >= 0:
+            miro[i][j] = miro[i][j] + max(miro[i-1][j],miro[i][j-1],miro[i-1][j-1])
+        elif i-1 >= 0:
+            miro[i][j] = miro[i][j] +miro[i-1][j]
+        elif j-1 >= 0:
+            miro[i][j] = miro[i][j] +miro[i][j-1]
 
-for i in range(len(li)-x):
-    print(*li[i][:-1])
+print(miro[-1][-1])
