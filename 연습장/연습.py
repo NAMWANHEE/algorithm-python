@@ -3544,18 +3544,34 @@ from collections import defaultdict
 # for i in range(len(li)-x):
 #     print(*li[i][:-1])
 
-n,m = map(int,input().split())
-miro = []
-for i in range(n):
-    miro.append(list(map(int,input().split())))
+# n,m = map(int,input().split())
+# miro = []
+# for i in range(n):
+#     miro.append(list(map(int,input().split())))
+#
+# for i in range(n):
+#     for j in range(m):
+#         if i-1 >= 0 and j-1 >= 0:
+#             miro[i][j] = miro[i][j] + max(miro[i-1][j],miro[i][j-1],miro[i-1][j-1])
+#         elif i-1 >= 0:
+#             miro[i][j] = miro[i][j] +miro[i-1][j]
+#         elif j-1 >= 0:
+#             miro[i][j] = miro[i][j] +miro[i][j-1]
+#
+# print(miro[-1][-1])
 
-for i in range(n):
-    for j in range(m):
-        if i-1 >= 0 and j-1 >= 0:
-            miro[i][j] = miro[i][j] + max(miro[i-1][j],miro[i][j-1],miro[i-1][j-1])
-        elif i-1 >= 0:
-            miro[i][j] = miro[i][j] +miro[i-1][j]
-        elif j-1 >= 0:
-            miro[i][j] = miro[i][j] +miro[i][j-1]
+n = int(input())
+li = list(map(int,input().split()))
 
-print(miro[-1][-1])
+dp = [1001 for _ in range(n)]
+dp[0] = 0
+for i in range(n):
+    for j in range(1,li[i]+1):
+        try:
+            dp[i+j] = min(dp[i]+1,dp[i+j])
+        except:
+            continue
+if dp[-1] == 1001:
+    print(-1)
+else:
+    print(dp[-1])
