@@ -3698,17 +3698,33 @@ from collections import defaultdict
 # for i in ans:
 #     print(i)
 
-n = int(input())
-li = [str(i) for i in range(1,n+1)]
-aa =['3','6','9']
-answer = []
-for i in li:
-    count = 0
-    for j in i:
-        if j in aa:
-            count += 1
-    if count == 0:
-        answer.append(i)
-    else:
-        answer.append('-'*count)
-print(*answer)
+# n = int(input())
+# li = [str(i) for i in range(1,n+1)]
+# aa =['3','6','9']
+# answer = []
+# for i in li:
+#     count = 0
+#     for j in i:
+#         if j in aa:
+#             count += 1
+#     if count == 0:
+#         answer.append(i)
+#     else:
+#         answer.append('-'*count)
+# print(*answer)
+
+t = int(input())
+for i in range(1,t+1):
+    n = int(input())
+    an = [[] for _ in range(n)]
+    for j in range(n):
+        if j == 0:
+            print(1)
+            an[j].append(1)
+            continue
+        for k in range(j+1):
+            if k == 0 or k == j:
+                an[j].append(1)
+            else:
+                an[j].append(an[j-1][k-1]+an[j-1][k])
+        print(*an[j])
