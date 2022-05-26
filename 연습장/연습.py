@@ -3744,32 +3744,61 @@ from collections import defaultdict
 #             ans.append(sum1)
 #     print('#'+str(c+1),max(ans))
 
+# t = int(input())
+# for i in range(t):
+#     word = deque(list(input()))
+#     flag = True
+#
+#     if len(word) % 2 == 0:
+#
+#         while word:
+#             a = word.popleft()
+#             b = word.pop()
+#             if a != b:
+#                 flag = False
+#                 break
+#         if flag == True:
+#             print('#'+str(i+1),1)
+#         else:
+#             print('#' + str(i + 1), 0)
+#     elif len(word) % 2 == 1:
+#
+#         while len(word) != 1:
+#             a = word.popleft()
+#             b = word.pop()
+#             if a != b:
+#                 flag = False
+#                 break
+#         if flag == True:
+#             print('#'+str(i+1),1)
+#         else:
+#             print('#' + str(i + 1), 0)
 t = int(input())
-for i in range(t):
-    word = deque(list(input()))
-    flag = True
+for test in range(1,t+1):
+    n = int(input())
+    road = []
+    visit = [[0]*n for _ in range(n)]
+    answer = [[1000000]*n for _ in range(n)]
+    answer[0][0] = 0
+    for i in range(n):
+        road.append(list(map(int,list(input()))))
+    dx = [1,-1,0,0]
+    dy = [0,0,1,-1]
+    q = deque()
+    q.append([0,0])
 
-    if len(word) % 2 == 0:
+    while q:
+        x,y = q.popleft()
+        visit[x][y] = 1
 
-        while word:
-            a = word.popleft()
-            b = word.pop()
-            if a != b:
-                flag = False
-                break
-        if flag == True:
-            print('#'+str(i+1),1)
-        else:
-            print('#' + str(i + 1), 0)
-    elif len(word) % 2 == 1:
+        for i in range(4):
+            nx = dx[i] + x
+            ny = dy[i] + y
 
-        while len(word) != 1:
-            a = word.popleft()
-            b = word.pop()
-            if a != b:
-                flag = False
-                break
-        if flag == True:
-            print('#'+str(i+1),1)
-        else:
-            print('#' + str(i + 1), 0)
+            if nx < 0 or ny < 0 or nx >= n or ny >= n:
+                continue
+            if answer[nx][ny] > road[nx][ny] + answer[x][y]:
+                answer[nx][ny] = road[nx][ny] + answer[x][y]
+                q.append([nx,ny])
+
+    print('#'+str(test),answer[-1][-1])
