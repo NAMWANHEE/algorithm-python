@@ -3729,17 +3729,47 @@ from collections import defaultdict
 #                 an[j].append(an[j-1][k-1]+an[j-1][k])
 #         print(*an[j])
 
+# t = int(input())
+# for c in range(t):
+#     m,n = map(int,input().split())
+#     bug = []
+#     for i in range(m):
+#         bug.append(list(map(int,input().split())))
+#     ans = []
+#     for i in range(m-n+1):
+#         for j in range(m-n+1):
+#             sum1 = 0
+#             for k in range(n):
+#                 sum1 += sum(bug[i+k][j:j+n])
+#             ans.append(sum1)
+#     print('#'+str(c+1),max(ans))
+
 t = int(input())
-for c in range(t):
-    m,n = map(int,input().split())
-    bug = []
-    for i in range(m):
-        bug.append(list(map(int,input().split())))
-    ans = []
-    for i in range(m-n+1):
-        for j in range(m-n+1):
-            sum1 = 0
-            for k in range(n):
-                sum1 += sum(bug[i+k][j:j+n])
-            ans.append(sum1)
-    print('#'+str(c+1),max(ans))
+for i in range(t):
+    word = deque(list(input()))
+    flag = True
+
+    if len(word) % 2 == 0:
+
+        while word:
+            a = word.popleft()
+            b = word.pop()
+            if a != b:
+                flag = False
+                break
+        if flag == True:
+            print('#'+str(i+1),1)
+        else:
+            print('#' + str(i + 1), 0)
+    elif len(word) % 2 == 1:
+
+        while len(word) != 1:
+            a = word.popleft()
+            b = word.pop()
+            if a != b:
+                flag = False
+                break
+        if flag == True:
+            print('#'+str(i+1),1)
+        else:
+            print('#' + str(i + 1), 0)
