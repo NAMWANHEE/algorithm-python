@@ -3713,18 +3713,33 @@ from collections import defaultdict
 #         answer.append('-'*count)
 # print(*answer)
 
+# t = int(input())
+# for i in range(1,t+1):
+#     n = int(input())
+#     an = [[] for _ in range(n)]
+#     for j in range(n):
+#         if j == 0:
+#             print(1)
+#             an[j].append(1)
+#             continue
+#         for k in range(j+1):
+#             if k == 0 or k == j:
+#                 an[j].append(1)
+#             else:
+#                 an[j].append(an[j-1][k-1]+an[j-1][k])
+#         print(*an[j])
+
 t = int(input())
-for i in range(1,t+1):
-    n = int(input())
-    an = [[] for _ in range(n)]
-    for j in range(n):
-        if j == 0:
-            print(1)
-            an[j].append(1)
-            continue
-        for k in range(j+1):
-            if k == 0 or k == j:
-                an[j].append(1)
-            else:
-                an[j].append(an[j-1][k-1]+an[j-1][k])
-        print(*an[j])
+for c in range(t):
+    m,n = map(int,input().split())
+    bug = []
+    for i in range(m):
+        bug.append(list(map(int,input().split())))
+    ans = []
+    for i in range(m-n+1):
+        for j in range(m-n+1):
+            sum1 = 0
+            for k in range(n):
+                sum1 += sum(bug[i+k][j:j+n])
+            ans.append(sum1)
+    print('#'+str(c+1),max(ans))
