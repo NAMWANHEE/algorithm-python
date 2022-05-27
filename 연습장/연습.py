@@ -3773,32 +3773,43 @@ from collections import defaultdict
 #             print('#'+str(i+1),1)
 #         else:
 #             print('#' + str(i + 1), 0)
-t = int(input())
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     road = []
+#     visit = [[0]*n for _ in range(n)]
+#     answer = [[1000000]*n for _ in range(n)]
+#     answer[0][0] = 0
+#     for i in range(n):
+#         road.append(list(map(int,list(input()))))
+#     dx = [1,-1,0,0]
+#     dy = [0,0,1,-1]
+#     q = deque()
+#     q.append([0,0])
+#
+#     while q:
+#         x,y = q.popleft()
+#         visit[x][y] = 1
+#
+#         for i in range(4):
+#             nx = dx[i] + x
+#             ny = dy[i] + y
+#
+#             if nx < 0 or ny < 0 or nx >= n or ny >= n:
+#                 continue
+#             if answer[nx][ny] > road[nx][ny] + answer[x][y]:
+#                 answer[nx][ny] = road[nx][ny] + answer[x][y]
+#                 q.append([nx,ny])
+#
+#     print('#'+str(test),answer[-1][-1])
+t = 10
 for test in range(1,t+1):
     n = int(input())
-    road = []
-    visit = [[0]*n for _ in range(n)]
-    answer = [[1000000]*n for _ in range(n)]
-    answer[0][0] = 0
-    for i in range(n):
-        road.append(list(map(int,list(input()))))
-    dx = [1,-1,0,0]
-    dy = [0,0,1,-1]
-    q = deque()
-    q.append([0,0])
-
-    while q:
-        x,y = q.popleft()
-        visit[x][y] = 1
-
-        for i in range(4):
-            nx = dx[i] + x
-            ny = dy[i] + y
-
-            if nx < 0 or ny < 0 or nx >= n or ny >= n:
-                continue
-            if answer[nx][ny] > road[nx][ny] + answer[x][y]:
-                answer[nx][ny] = road[nx][ny] + answer[x][y]
-                q.append([nx,ny])
-
-    print('#'+str(test),answer[-1][-1])
+    li = list(map(int,input().split()))
+    ans = 0
+    for i in range(2,n-2):
+        m = max(li[i-1],li[i-2],li[i+1],li[i+2])
+        if li[i] <= m:
+            continue
+        ans += li[i]-m
+    print('#'+str(test),ans)
