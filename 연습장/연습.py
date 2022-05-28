@@ -3802,14 +3802,26 @@ from collections import defaultdict
 #                 q.append([nx,ny])
 #
 #     print('#'+str(test),answer[-1][-1])
-t = 10
+# t = 10
+# for test in range(1,t+1):
+#     n = int(input())
+#     li = list(map(int,input().split()))
+#     ans = 0
+#     for i in range(2,n-2):
+#         m = max(li[i-1],li[i-2],li[i+1],li[i+2])
+#         if li[i] <= m:
+#             continue
+#         ans += li[i]-m
+#     print('#'+str(test),ans)
+from collections import defaultdict
+t = int(input())
 for test in range(1,t+1):
     n = int(input())
-    li = list(map(int,input().split()))
-    ans = 0
-    for i in range(2,n-2):
-        m = max(li[i-1],li[i-2],li[i+1],li[i+2])
-        if li[i] <= m:
-            continue
-        ans += li[i]-m
-    print('#'+str(test),ans)
+    dic = defaultdict(int)
+    number = list(map(int,input().split()))
+
+    for i in number:
+        dic[i] += 1
+    sort_dic = sorted(dic.items(), key=lambda x: x[0], reverse=True)
+    sort_dic = sorted(sort_dic, key =lambda x: x[1], reverse= True)
+    print('#'+str(test),sort_dic[0][0])
