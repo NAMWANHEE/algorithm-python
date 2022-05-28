@@ -3813,15 +3813,66 @@ from collections import defaultdict
 #             continue
 #         ans += li[i]-m
 #     print('#'+str(test),ans)
-from collections import defaultdict
+# from collections import defaultdict
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     dic = defaultdict(int)
+#     number = list(map(int,input().split()))
+#
+#     for i in number:
+#         dic[i] += 1
+#     sort_dic = sorted(dic.items(), key=lambda x: x[0], reverse=True)
+#     sort_dic = sorted(sort_dic, key =lambda x: x[1], reverse= True)
+#     print('#'+str(test),sort_dic[0][0])
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     snail = [[0]*n for _ in range(n)]
+#     move = [[0,1],[1,0],[0,-1],[-1,0]]
+#
+#     q = deque()
+#     q.append([0,0])
+#     snail[0][0] = 1
+#     idx = 0
+#     while q:
+#         x,y = q.popleft()
+#         idx_n = idx % 4
+#         nx = x + move[idx_n][0]
+#         ny = y + move[idx_n][1]
+#         if nx < 0 or ny < 0 or nx >= n or ny >= n:
+#             idx += 1
+#             q.append([x,y])
+#             continue
+#         if snail[nx][ny] != 0:
+#             idx += 1
+#             q.append([x, y])
+#             continue
+#         snail[nx][ny] = snail[x][y] + 1
+#         if snail[nx][ny] == n**2:
+#             break
+#         q.append([nx,ny])
+#     print('#'+str(test))
+#     for i in snail:
+#         print(*i)
 t = int(input())
 for test in range(1,t+1):
     n = int(input())
-    dic = defaultdict(int)
-    number = list(map(int,input().split()))
+    snail = [[0]*n for _ in range(n)]
+    move = [[0,1],[1,0],[0,-1],[-1,0]]
+    x,y = 0,0
+    snail[0][0] = 1
+    idx = 0
+    while snail[x][y] != n**2:
+        nx = x + move[idx][0]
+        ny = y + move[idx][1]
+        if nx < 0 or ny < 0 or nx >= n or ny >= n or snail[nx][ny] != 0:
+            idx = (idx+1) % 4
+        else:
+            snail[nx][ny] = snail[x][y] + 1
+            x = nx
+            y = ny
 
-    for i in number:
-        dic[i] += 1
-    sort_dic = sorted(dic.items(), key=lambda x: x[0], reverse=True)
-    sort_dic = sorted(sort_dic, key =lambda x: x[1], reverse= True)
-    print('#'+str(test),sort_dic[0][0])
+    print('#' + str(test))
+    for i in snail:
+        print(*i)
