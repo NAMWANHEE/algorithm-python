@@ -3877,14 +3877,29 @@ from collections import defaultdict
 #     for i in snail:
 #         print(*i)
 
-t = int(input())
-for i in range(t):
-    word = deque(list(input()))
-    compare = []
-    for j in range(len(word)):
-        compare.append(word.popleft())
-        a = len(compare)
+# t = int(input())
+# for i in range(t):
+#     word = deque(list(input()))
+#     compare = []
+#     for j in range(len(word)):
+#         compare.append(word.popleft())
+#         a = len(compare)
+#
+#         if compare == list(word)[:a]:
+#             print('#'+str(i+1),len(compare))
+#             break
 
-        if compare == list(word)[:a]:
-            print('#'+str(i+1),len(compare))
-            break
+#
+t = int(input())
+for test in range(1,t+1):
+    n = int(input())
+    land = list(map(int,input().split()))
+    for i in range(n):
+        land.sort(reverse=True)
+        land[0] = land[0]-1
+        land[-1] = land[-1] +1
+    land.sort(reverse=True)
+    print('#'+str(test),land[0]-land[-1])
+
+
+
