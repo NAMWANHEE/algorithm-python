@@ -3890,16 +3890,87 @@ from collections import defaultdict
 #             break
 
 #
-t = int(input())
-for test in range(1,t+1):
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     land = list(map(int,input().split()))
+#     for i in range(n):
+#         land.sort(reverse=True)
+#         land[0] = land[0]-1
+#         land[-1] = land[-1] +1
+#     land.sort(reverse=True)
+#     print('#'+str(test),land[0]-land[-1])
+
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     farm = []
+#     a = []
+#     idx = []
+#     for i in range(n):
+#         farm.append(list(map(int,list(input()))))
+#
+#     b = 1
+#     c = 2
+#     c_idx = -1
+#     x = n//2
+#     for i in range(n):
+#         idx.append(x)
+#         a.append(b)
+#         if i == (n//2):
+#             c = -2
+#             c_idx = 1
+#         b += c
+#         x += c_idx
+#
+#     answer = 0
+#     for i in range(n):
+#         for j in farm[i][idx[i]:idx[i]+a[i]]:
+#             answer += j
+#     print('#'+str(test),answer)
+
+def check(string):
+    word = deque(string)
+    flag = True
+    if len(word) % 2 == 0:
+        while word:
+            a = word.popleft()
+            b = word.pop()
+            if a != b:
+                flag = False
+                break
+        if flag == True:
+            return 1
+        else:
+            return 0
+    elif len(word) % 2 == 1:
+        while len(word) != 1:
+            a = word.popleft()
+            b = word.pop()
+            if a != b:
+                flag = False
+                break
+        if flag == True:
+            return 1
+        else:
+            return 0
+for test in range(1,11):
     n = int(input())
-    land = list(map(int,input().split()))
-    for i in range(n):
-        land.sort(reverse=True)
-        land[0] = land[0]-1
-        land[-1] = land[-1] +1
-    land.sort(reverse=True)
-    print('#'+str(test),land[0]-land[-1])
+    case = []
+    for i in range(8):
+        case.append(list(input()))
+    answer = 0
 
+    for i in range(len(case)):
+        for j in range(len(case)-n+1):
+            if check(case[i][j:j+n]) == 1:
+                answer += 1
 
-
+    for i in range(len(case)):
+        for j in range(len(case)-n+1):
+            st = ''
+            for k in range(n):
+                st += case[j+k][i]
+            if check(st) == 1:
+                answer += 1
+    print('#'+str(test),answer)
