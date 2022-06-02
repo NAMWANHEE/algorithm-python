@@ -3929,48 +3929,71 @@ from collections import defaultdict
 #             answer += j
 #     print('#'+str(test),answer)
 
-def check(string):
-    word = deque(string)
-    flag = True
-    if len(word) % 2 == 0:
-        while word:
-            a = word.popleft()
-            b = word.pop()
-            if a != b:
-                flag = False
-                break
-        if flag == True:
-            return 1
-        else:
-            return 0
-    elif len(word) % 2 == 1:
-        while len(word) != 1:
-            a = word.popleft()
-            b = word.pop()
-            if a != b:
-                flag = False
-                break
-        if flag == True:
-            return 1
-        else:
-            return 0
-for test in range(1,11):
+# def check(string):
+#     word = deque(string)
+#     flag = True
+#     if len(word) % 2 == 0:
+#         while word:
+#             a = word.popleft()
+#             b = word.pop()
+#             if a != b:
+#                 flag = False
+#                 break
+#         if flag == True:
+#             return 1
+#         else:
+#             return 0
+#     elif len(word) % 2 == 1:
+#         while len(word) != 1:
+#             a = word.popleft()
+#             b = word.pop()
+#             if a != b:
+#                 flag = False
+#                 break
+#         if flag == True:
+#             return 1
+#         else:
+#             return 0
+# for test in range(1,11):
+#     n = int(input())
+#     case = []
+#     for i in range(8):
+#         case.append(list(input()))
+#     answer = 0
+#
+#     for i in range(len(case)):
+#         for j in range(len(case)-n+1):
+#             if check(case[i][j:j+n]) == 1:
+#                 answer += 1
+#
+#     for i in range(len(case)):
+#         for j in range(len(case)-n+1):
+#             st = ''
+#             for k in range(n):
+#                 st += case[j+k][i]
+#             if check(st) == 1:
+#                 answer += 1
+#     print('#'+str(test),answer)
+for _ in range(10):
     n = int(input())
-    case = []
-    for i in range(8):
-        case.append(list(input()))
-    answer = 0
+    arr = []
+    ans = []
+    for i in range(100):
+        arr.append(list(map(int,input().split())))
 
-    for i in range(len(case)):
-        for j in range(len(case)-n+1):
-            if check(case[i][j:j+n]) == 1:
-                answer += 1
+    for i in arr:
+        ans.append(sum(i))
+    v1 = 0 # 대각선 1
+    v2 = 0 # 대각선 2
+    for i in range(100):
+        v = 0
+        for j in range(100):
+            v += arr[j][i]
+        ans.append(v)
 
-    for i in range(len(case)):
-        for j in range(len(case)-n+1):
-            st = ''
-            for k in range(n):
-                st += case[j+k][i]
-            if check(st) == 1:
-                answer += 1
-    print('#'+str(test),answer)
+        v1 += arr[i][i]
+        v2 += arr[i][99-i]
+    ans.append(v1)
+    ans.append(v2)
+
+    print('#'+str(n),max(ans))
