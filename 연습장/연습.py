@@ -4040,45 +4040,120 @@ from collections import defaultdict
 #             if bfs([0,i],s):
 #                 print('#'+str(n),i)
 
-from collections import deque
-for _ in range(10):
+# from collections import deque
+# for _ in range(10):
+#     n = int(input())
+#     miro = []
+#     for i in range(16):
+#         miro.append(list(map(int,list(input()))))
+#     dx = [1,-1,0,0]
+#     dy = [0,0,1,-1]
+#     q = deque()
+#     possible = False
+#     for i in range(16):
+#         break_point = False
+#         for j in range(16):
+#             if miro[i][j] == 2:
+#                 q.append([i,j])
+#                 miro[i][j] = 1
+#                 break_point = True
+#         if break_point == True:
+#             break
+#
+#     while q:
+#         x,y = q.popleft()
+#         for i in range(4):
+#             nx = dx[i] + x
+#             ny = dy[i] + y
+#
+#             if nx < 0 or ny < 0 or nx >= 16 or ny >= 16:
+#                 continue
+#             if miro[nx][ny] == 1:
+#                 continue
+#             if miro[nx][ny] == 3:
+#                 possible = True
+#                 break
+#             miro[nx][ny] = 1
+#             q.append([nx,ny])
+#
+#     if possible:
+#         print('#'+str(n),1)
+#     else:
+#         print('#'+str(n),0)
+# import copy
+# from collections import deque
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     info = deque()
+#     for i in range(n):
+#         info.append(list(map(int,input().split())))
+#
+#     count = 0
+#     while info:
+#         visit = [0] * 200
+#         aa = copy.deepcopy(info)
+#         for z in info:
+#             if z[0] > z[1]:
+#                 a = (z[1]-1) // 2
+#                 b = (z[0]-1) // 2
+#             else:
+#                 a = (z[0]-1) // 2
+#                 b = (z[1]-1) // 2
+#
+#             flag = False
+#             if (b-a) % 2 == 0:
+#                 for j in range(a,b+1,2):
+#                     if visit[(j-1)//2] == 1:
+#                         flag = True
+#                         break
+#                     else:
+#                         visit[(j - 1) // 2] = 1
+#                 if flag == False:
+#
+#                     aa.popleft()
+#                 else:
+#                     aa.append(aa.popleft())
+#
+#             else:
+#
+#                 for j in range(a-1, b+1, 2):
+#                     if visit[(j - 1) // 2] == 1:
+#                         flag = True
+#                         break
+#                     else:
+#                         visit[(j - 1) // 2] = 1
+#                 if flag == False:
+#                     aa.popleft()
+#                 else:
+#                     aa.append(aa.popleft())
+#
+#         count += 1
+#         if len(aa) == 0:
+#             break
+#         info = aa
+#
+#     print('#'+str(test),count)
+t = int(input())
+for test in range(1,t+1):
     n = int(input())
-    miro = []
-    for i in range(16):
-        miro.append(list(map(int,list(input()))))
-    dx = [1,-1,0,0]
-    dy = [0,0,1,-1]
-    q = deque()
-    possible = False
-    for i in range(16):
-        break_point = False
-        for j in range(16):
-            if miro[i][j] == 2:
-                q.append([i,j])
-                miro[i][j] = 1
-                break_point = True
-        if break_point == True:
+    length = len(str(n))
+    dic1 = {}
+    if length == 1:
+        print('#'+str(test)+' impossible')
+        continue
+    for i in str(n):
+        dic1[i] = 1
+
+    num = 2
+    while True:
+        dic2 = {}
+        if len(str(n*num)) > length:
+            print('#'+str(test)+' impossible')
             break
-
-    while q:
-        x,y = q.popleft()
-        for i in range(4):
-            nx = dx[i] + x
-            ny = dy[i] + y
-
-            if nx < 0 or ny < 0 or nx >= 16 or ny >= 16:
-                continue
-            if miro[nx][ny] == 1:
-                continue
-            if miro[nx][ny] == 3:
-                possible = True
-                break
-            miro[nx][ny] = 1
-            q.append([nx,ny])
-
-    if possible:
-        print('#'+str(n),1)
-    else:
-        print('#'+str(n),0)
-
-
+        for i in str(n*num):
+            dic2[i] = 1
+        if dic1 == dic2:
+            print('#'+str(test)+' possible')
+            break
+        num += 1
