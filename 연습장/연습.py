@@ -4080,60 +4080,26 @@ from collections import defaultdict
 #         print('#'+str(n),1)
 #     else:
 #         print('#'+str(n),0)
-# import copy
-# from collections import deque
-# t = int(input())
-# for test in range(1,t+1):
-#     n = int(input())
-#     info = deque()
-#     for i in range(n):
-#         info.append(list(map(int,input().split())))
-#
-#     count = 0
-#     while info:
-#         visit = [0] * 200
-#         aa = copy.deepcopy(info)
-#         for z in info:
-#             if z[0] > z[1]:
-#                 a = (z[1]-1) // 2
-#                 b = (z[0]-1) // 2
-#             else:
-#                 a = (z[0]-1) // 2
-#                 b = (z[1]-1) // 2
-#
-#             flag = False
-#             if (b-a) % 2 == 0:
-#                 for j in range(a,b+1,2):
-#                     if visit[(j-1)//2] == 1:
-#                         flag = True
-#                         break
-#                     else:
-#                         visit[(j - 1) // 2] = 1
-#                 if flag == False:
-#
-#                     aa.popleft()
-#                 else:
-#                     aa.append(aa.popleft())
-#
-#             else:
-#
-#                 for j in range(a-1, b+1, 2):
-#                     if visit[(j - 1) // 2] == 1:
-#                         flag = True
-#                         break
-#                     else:
-#                         visit[(j - 1) // 2] = 1
-#                 if flag == False:
-#                     aa.popleft()
-#                 else:
-#                     aa.append(aa.popleft())
-#
-#         count += 1
-#         if len(aa) == 0:
-#             break
-#         info = aa
-#
-#     print('#'+str(test),count)
+import copy
+from collections import deque
+t = int(input())
+for test in range(1,t+1):
+    n = int(input())
+    info = deque()
+    for i in range(n):
+        info.append(list(map(int,input().split())))
+    visit = [0] * 200
+    for j in info:
+        if j[0] > j[1]:
+            a = (j[1]-1) //2
+            b = (j[0]-1) // 2
+        else:
+            b = (j[1] - 1) // 2
+            a = (j[0] - 1) // 2
+        for k in range(a,b+1):
+            visit[k] += 1
+
+    print('#'+str(test),max(visit))
 # t = int(input())
 # for test in range(1,t+1):
 #     n = int(input())
@@ -4193,15 +4159,15 @@ from collections import defaultdict
 #             dfs(x,y,cnt,result)
 #
 #     print('#'+str(i),len(set(ans)))
-t = int(input())
-for test in range(1,t+1):
-    n = int(input())
-    li = list(map(int,input().split()))
-    li2 = [0] * (sum(li)+1)
-    answer = [0]
-    for i in li:
-        answer = list(set(answer))
-        for j in range(len(answer)):
-            answer.append(answer[j] + i)
-    print('#'+str(test),len(set(answer)))
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     li = list(map(int,input().split()))
+#     li2 = [0] * (sum(li)+1)
+#     answer = [0]
+#     for i in li:
+#         answer = list(set(answer))
+#         for j in range(len(answer)):
+#             answer.append(answer[j] + i)
+#     print('#'+str(test),len(set(answer)))
 
