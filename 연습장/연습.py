@@ -4202,15 +4202,19 @@ import copy
 #     ans = sorted(answer.items(),key = lambda x : x[0],reverse=True)
 #     ans = sorted(ans,key = lambda x: x[1])
 #     print('#'+str(test),ans[-1][0],ans[-1][1]+1)
-from collections import Counter
+# from collections import Counter
+# t = int(input())
+# for test in range(1,t+1):
+#     n = list(input())
+#
+#     if Counter(n)['o'] + (15-len(n)) >= 8:
+#         print('#'+str(test)+' YES')
+#     else:
+#         print('#'+str(test) + ' NO')
+
 t = int(input())
+day = ['SUN','MON','TUE','WED','THU','FRI','SAT']
 for test in range(1,t+1):
-    n = list(input())
-
-    if Counter(n)['o'] + (15-len(n)) >= 8:
-        print('#'+str(test)+' YES')
-    else:
-        print('#'+str(test) + ' NO')
-
-
-
+    n = input()
+    s = day.index(n)
+    print('#'+str(test),7-s)
