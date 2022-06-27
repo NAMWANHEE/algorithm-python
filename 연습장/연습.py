@@ -4212,9 +4212,38 @@ import copy
 #     else:
 #         print('#'+str(test) + ' NO')
 
-t = int(input())
-day = ['SUN','MON','TUE','WED','THU','FRI','SAT']
-for test in range(1,t+1):
-    n = input()
-    s = day.index(n)
-    print('#'+str(test),7-s)
+# t = int(input())
+# day = ['SUN','MON','TUE','WED','THU','FRI','SAT']
+# for test in range(1,t+1):
+#     n = input()
+#     s = day.index(n)
+#     print('#'+str(test),7-s)
+
+# t = int(input())
+# for test in range(1,t+1):
+#     n = int(input())
+#     if n <= 10:
+#         print('#'+str(test)+' Yes')
+#     else:
+#         flag = False
+#         for i in range(2,10):
+#             if n % i == 0 and n // i < 10 :
+#                 flag = True
+#                 break
+#         if flag:
+#             print('#'+str(test)+' Yes')
+#         else:
+#             print('#' + str(test)+' No')
+
+from itertools import permutations
+n = int(input())
+li = list(map(int,input().split()))
+leng = len(li)
+new_li = list(permutations(li))
+ans = 0
+for i in new_li:
+    m = 0
+    for j in range(leng-1):
+        m += abs(i[j]-i[j+1])
+    ans = max(m,ans)
+print(ans)
